@@ -2,6 +2,8 @@
 
 @import 'vendor/normalize';
 
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 $navRGBa: rgb(0,0,0);
 $alpha: .3;
 $navAlpha: rgba($navRGBa, $alpha);
@@ -14,6 +16,7 @@ body {
         #6B5B4B, #A09665
     );
     z-index: -1;
+    font-family: 'Montserrat', sans-serif;
 }
 .landingDiv {
     h2 {
@@ -52,7 +55,7 @@ footer {
     border: 2px white solid;
     border-radius: 20px;
     color: white;
-    width: 70px;
+    width: 80px;
 
 }
 

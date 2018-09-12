@@ -24,7 +24,7 @@ render((
     <App>
       <Switch>
         <Route exact path="/" component={Landing}/>
-        <Route path="/Home" component={Home}/>
+        <Route exact path="/Home" component={Home}/>
         <Route component={NotFound}/>
       </Switch>
     </App>
