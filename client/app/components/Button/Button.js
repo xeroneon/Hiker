@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import Map from '../Map/Map';
 import 'whatwg-fetch';
 // import { url } from 'inspector';
 
-class Home extends Component {
+class Button extends Component {
 
   constructor(props) {
     super(props);
@@ -11,10 +10,12 @@ class Home extends Component {
   
   render() {
     return(
-      <div><Map /></div>
+      <form>
+          <button className="main-btn">{this.props.btnName}</button>
+      </form>
     );
   }
 
 }
 
-export default Home;
+export default Button;
