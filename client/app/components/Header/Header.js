@@ -3,15 +3,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Header = () => (
-  <header>
-    <Link to="/">Home</Link>
-
-    <nav>
-      <Link to="/helloworld">Hello World</Link>
-    </nav>
-
-    <hr />
-  </header>
+  <nav className="navbar">
+    <Link to="/Home">Home</Link>
+    <Link to="/">Landing</Link>
+  </nav>
 );
-
 export default Header;

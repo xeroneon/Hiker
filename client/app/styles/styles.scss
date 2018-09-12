@@ -2,8 +2,58 @@
 
 @import 'vendor/normalize';
 
+$navRGBa: rgb(0,0,0);
+$alpha: .3;
+$navAlpha: rgba($navRGBa, $alpha);
 body {
     height: 100vh;
+    width: 100vw;
+    background-image:
+        linear-gradient(
+        -45deg, 
+        #6B5B4B, #A09665
+    );
+    z-index: -1;
+}
+.landingDiv {
+    h2 {
+        color: #FFF;
+    }
+    text-align: center;
+    position: relative;
+    top: 20vh;
+    width: 100vw;
+}
+
+.navbar {
+    background: $navAlpha;
+    width: 100vw;
+    height: 8vh;
+    color:white;
+
+    a {
+        color:white;
+        text-decoration: none;
+    }
+
+}
+
+footer {
+    background: $navAlpha;
+    width: 100vw;
+    height: 8vh;
+    position: absolute;
+    bottom: 0vh;
+    color:white;
+}
+
+.main-btn {
+    background: none;
+    border: 2px white solid;
+    border-radius: 20px;
+    color: white;
+    width: 70px;
+
 }
 
 .leaflet-popup-content {
