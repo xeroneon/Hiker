@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
 const divStyle = {
-    height: "700px",
-    width: "700px",
+    height: "50vh",
+    width: "100vw",
+    zIndex: 2
 };
 
 class Map extends Component {
