@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 import 'whatwg-fetch';
 // import { url } from 'inspector';
 // import '../../styles/landing.scss';
@@ -16,7 +17,9 @@ class Landing extends Component {
     return(
       <div className="landingDiv">
           <h2><strong>Helping hikers stay safe</strong></h2>
-          <Button btnName="Join"/>
+          <Link to="/signup">
+            <Button btnName="Join"/>
+          </Link>
       </div>
     );
   }
