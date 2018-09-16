@@ -12,7 +12,7 @@ class Home extends Component {
   render() {
     document.body.style = "";
     return(
-      <div><Map /></div>
+      <div><MainMap /></div>
     );
   }
 
