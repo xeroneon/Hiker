@@ -2,5 +2,14 @@
   "presets": [
     "@babel/preset-env",
     "@babel/preset-react"
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-export-default-from",
+    "@babel/plugin-transform-proto-to-assign",
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-transform-strict-mode",
+    "dev-expression",
+    "lodash"
   ]
 }
