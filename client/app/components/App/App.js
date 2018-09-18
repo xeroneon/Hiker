@@ -5,6 +5,8 @@ import Footer from '../Footer/Footer';
 
 document.body.style = "";
 
+
+
 const App = ({ children }) => (
   <>
     <Nav />
