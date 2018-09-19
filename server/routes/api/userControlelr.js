@@ -141,6 +141,7 @@ module.exports = (app) => {
 
             const userSession = new UserSession();
             userSession.userId = user._id;
+            userSession.isDeleted = false;
             userSession.save((err, doc) => {
                 if (err) {
                     return res.send({
@@ -162,12 +163,15 @@ module.exports = (app) => {
     app.get("/api/account/verify", (req, res, next) => {
 
         const { query } = req;
-        const {token} = query;
+        const { token } = query;
+
+        console.log(token);
 
         UserSession.find({
             _id: token,
             isDeleted: false
         }, (err, sessions) => {
+            console.log(sessions);
             if (err) {
                 return res.send({
                     success: false,
@@ -187,5 +191,30 @@ module.exports = (app) => {
                 })
             }
         })
+    });
+
+    app.get("/api/account/logout", (req, res, next) => {
+        const { query } = req;
+        const { token } = query;
+
+        console.log(token);
+
+        UserSession.findOneAndUpdate({
+            _id: token
+        }, {
+            $set: { isDeleted: true }
+        }, null, (err, sessions) => {
+            console.log(sessions);
+            if (err) {
+                return res.send({
+                    success: false,
+                    message: "Server Error"
+                });
+            }
+            return res.send({
+                success: true,
+                message: "Good"
+            });
+        });
     });
 };
