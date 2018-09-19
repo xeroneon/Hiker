@@ -18,6 +18,23 @@ body {
     z-index: -1;
     font-family: 'Montserrat', sans-serif;
 }
+
+.sign-up-form {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.main-text-box {
+    width: 80%;
+    margin: 10px 10px;
+    background: rgba(0,0,0, .5);
+    border: none;
+    color: white;
+    border-radius: 20px;
+    padding-left: 10px;
+}
+
 .landingDiv {
     h2 {
         color: #FFF;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TrailsAPI from "../../utils/API";
 import L from 'leaflet';
 // import TrailIcon from "./Icons";
-import MapView from "./MapView";
+// import MapView from "./MapView";
 
 const divStyle = {
   height: "700px",
