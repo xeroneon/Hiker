@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import 'whatwg-fetch';
 // import { url } from 'inspector';
-import {
-    getFromStorage,
-    setInStorage
-} from "../App/utils/storage";
+// import {
+//     getFromStorage,
+//     setInStorage
+// } from "../App/utils/storage";
 
 class SignUp extends Component {
 
