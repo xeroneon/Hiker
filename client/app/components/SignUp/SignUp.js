@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import 'whatwg-fetch';
+import axios from 'axios';
 // import { url } from 'inspector';
 // import {
 //     getFromStorage,
@@ -11,90 +12,49 @@ class SignUp extends Component {
     constructor(props) {
         super(props);
 
-        state = {
+        this.state = {
             isLoading: true,
             token: '',
             signUpError: '',
-            signInError: '',
-            signInEmail: '',
-            signInPassword: '',
-            signUpFirstName: '',
-            signUpLastName: '',
-            signUpEmail: '',
-            signUpPassword: '',
+            signInError: ''
         }
-    }
-
-    componentDidMount() {
-        // const token = getFromStorage('Hiker')
-        // if (token) {
-        //     fetch('/api/account/verify?token=' + token)
-        //         .then(res => res.json())
-        //         .then(json => {
-        //             if (json.success) {
-        //                 this.setState({
-        //                     token,
-        //                     isLoading: false
-        //                 })
-        //             } else {
-        //                 this.setState({
-        //                     isLoading: false
-        //                 })
-        //             }
-        //         })
-        // } else {
-        //     this.setState({
-        //         isLoading: false
-        //     })
-        // }
     }
 
     handleInputChange = event => {
         const value = event.target.value;
         const name = event.target.name;
         this.setState({
-          [name]: value
+            [name]: value
         });
-      };
-    
+    };
+
+    handleFormSubmit = event => {
+        event.preventDefault();
+        const newUser = {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            password: this.state.password,
+            email: this.state.email
+        }
+
+        axios.post("/api/account/signup", newUser)
+            .then(res => {
+                console.log("worked")
+            })
+    }
+
 
     render() {
         document.body.style = "";
-
-        const {
-            isLoading,
-            token,
-            signUpError,
-            signInError,
-            signInEmail,
-            signInPassword,
-            signUpFirstName,
-            signUpLastName,
-            signUpEmail,
-            signUpPassword,
-        } = this.state;
-
-        // if(isLoading) {
-        //     return (<div><p>...loading</p></div>);
-        // }
-
-        // if (!token) {
-        //     return (
-        //         <div>
-        //             Sign In
-        //         </div>
-        //     )
-        // }
-
         return (
             <div>
-                    <form className="sign-up-form">
-                        <input type="text" placeholder="First Name" className="main-text-box" value={signUpFirstName} name="signUpFirstName" onChange={this.handleInputChange()}/>
-                        <input type="text" placeholder="Last Name" className="main-text-box" value={signUpLastName} name="signUpLastName"/>
-                        <input type="text" placeholder="Email" className="main-text-box" value={signUpEmail} name="signUpEmail"/>
-                        <input type="password" placeholder="Password" className="main-text-box" value={signUpPassword} name="signUpPassword"/>
-                        <input type="submit" className="main-btn"/>
-                    </form>
+                <form className="sign-up-form">
+                    <input type="text" placeholder="First Name" className="main-text-box" value={this.state.firstName} name="firstName" onChange={this.handleInputChange} />
+                    <input type="text" placeholder="Last Name" className="main-text-box" value={this.state.lastName} name="lastName" onChange={this.handleInputChange}/>
+                    <input type="text" placeholder="Email" className="main-text-box" value={this.state.email} name="email" onChange={this.handleInputChange}/>
+                    <input type="password" placeholder="Password" className="main-text-box" value={this.state.password} name="password" onChange={this.handleInputChange}/>
+                    <input type="submit" className="main-btn" onClick={this.handleFormSubmit}/>
+                </form>
             </div >
         );
     }
