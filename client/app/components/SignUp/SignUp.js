@@ -6,6 +6,7 @@ import axios from 'axios';
 //     getFromStorage,
 //     setInStorage
 // } from "../App/utils/storage";
+import { Redirect } from 'react-router'
 
 class SignUp extends Component {
 
@@ -14,6 +15,7 @@ class SignUp extends Component {
 
         this.state = {
             isLoading: true,
+            redirect: false,
             token: '',
             signUpError: '',
             signInError: ''
@@ -40,20 +42,26 @@ class SignUp extends Component {
         axios.post("/api/account/signup", newUser)
             .then(res => {
                 console.log("worked")
+                this.setState({
+                    redirect: true
+                })
             })
     }
 
 
     render() {
         document.body.style = "";
+        if (this.state.redirect) {
+            return <Redirect to='/Home' />;
+        }
         return (
             <div>
                 <form className="sign-up-form">
                     <input type="text" placeholder="First Name" className="main-text-box" value={this.state.firstName} name="firstName" onChange={this.handleInputChange} />
-                    <input type="text" placeholder="Last Name" className="main-text-box" value={this.state.lastName} name="lastName" onChange={this.handleInputChange}/>
-                    <input type="text" placeholder="Email" className="main-text-box" value={this.state.email} name="email" onChange={this.handleInputChange}/>
-                    <input type="password" placeholder="Password" className="main-text-box" value={this.state.password} name="password" onChange={this.handleInputChange}/>
-                    <input type="submit" className="main-btn" onClick={this.handleFormSubmit}/>
+                    <input type="text" placeholder="Last Name" className="main-text-box" value={this.state.lastName} name="lastName" onChange={this.handleInputChange} />
+                    <input type="text" placeholder="Email" className="main-text-box" value={this.state.email} name="email" onChange={this.handleInputChange} />
+                    <input type="password" placeholder="Password" className="main-text-box" value={this.state.password} name="password" onChange={this.handleInputChange} />
+                    <input type="submit" className="main-btn" onClick={this.handleFormSubmit} />
                 </form>
             </div >
         );
