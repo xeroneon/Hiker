@@ -13,7 +13,7 @@ const Nav = () => (
       </strong>
       </h2>
     </Link>
-    <Link to="/Home"><Button btnName="Sign In" /></Link>
+    <Link to="/signin"><Button btnName="Sign In" /></Link>
   </nav>
 );
 export default Nav;
