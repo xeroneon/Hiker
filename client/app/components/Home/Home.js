@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Map from '../Map/Map';
+import Example from '../Map/Map';
 import 'whatwg-fetch';
 // import { url } from 'inspector';
 
@@ -33,8 +33,8 @@ class Home extends Component {
 
   render() {
     document.body.style = "";
-    return (
-      <div><Map /></div>
+    return(
+      <div><Example /></div>
     );
   }
 

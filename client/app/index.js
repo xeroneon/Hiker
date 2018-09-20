@@ -2,6 +2,11 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import {
+  getFromStorage,
+  setInStorage
+} from "../app/utils/storage";
+
+import {
   BrowserRouter as Router,
   Route,
   Link,
