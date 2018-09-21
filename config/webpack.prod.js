@@ -3,6 +3,7 @@ const merge = require('webpack-merge');
 
 const helpers = require('./helpers');
 const commonConfig = require('./webpack.common');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = merge(commonConfig, {
   mode: 'production',
@@ -23,4 +24,20 @@ module.exports = merge(commonConfig, {
   //     }
   //   })
   // ]
+
+  optimization: {
+    minimizer: [
+      // we specify a custom UglifyJsPlugin here to get source maps in production
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        uglifyOptions: {
+          compress: false,
+          ecma: 6,
+          mangle: true
+        },
+        sourceMap: true
+      })
+    ]
+  }
 });
