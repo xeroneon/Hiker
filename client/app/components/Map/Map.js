@@ -3,7 +3,7 @@ import TrailsAPI from "../../utils/API";
 import L from 'leaflet';
 import Basemap from "./Basemap";
 import TrailData from "./Trails";
-// import TrailMarker from "../../../public/assets/img/";
+import Locate from './Locate';
 
 
 // const divStyle = {
@@ -11,35 +11,23 @@ import TrailData from "./Trails";
 //   width: "700px",
 // };
 
-// const customControl = L.Control.extend({
-
-//   // options: {
-//   //   position: 'topright'
-//   // },
-
-//   onAdd: function (map) {
-//     var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom auto-button');
-//     container.style.backgroundColor = 'white';
-//     container.style.backgroundImage = "src(../../../public/assets/img/locate.png)";
-//     container.style.backgroundSize = "30px 30px";
-//     container.style.width = '30px';
-//     container.style.height = '30px';
-//     // autoLocate.style.width = '100%', 'text-center';
-//     // container(autoLocate);
-//     container.onclick = function () {
-//       console.log('buttonClicked');
-//     }
-
-//     return container;
-//   }
-// });
 
 
 class Map extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      something: ''
+    }
+  }
+
   componentDidMount() {
     let map = L.map("map").fitWorld();
     map.locate({ setView: true, maxZoom: 10 });
+  
+    Locate(map);
 
     let state = {
       lat: 33.5,
@@ -54,7 +42,7 @@ class Map extends Component {
       data: []
     }
 
-    function onLocation(e) {
+    function onLocation() {
       state.lat = map.getCenter().lat;
       state.lon = map.getCenter().lng
       console.log(state)
@@ -66,19 +54,6 @@ class Map extends Component {
     map.on('dragend', function (e) {
       onLocation(e)
     })
-
-    // $('.auto-button').on('click', function (e) {
-    //   // function onLocationFound(e) {
-    //     var radius = e.accuracy / 2;
-
-    //     L.marker(e.latlng).addTo(map)
-    //       .bindPopup("You are within " + radius + " meters from this point").openPopup();
-
-    //     L.circle(e.latlng, radius).addTo(map);
-    //   // }
-
-    //   map.on('locationfound', onLocationFound);
-    // })
 
     Basemap.addTo(map)
 
@@ -93,7 +68,6 @@ class Map extends Component {
         return
       })
     }
-    // map.addControl(new customControl());
   }
 
 
