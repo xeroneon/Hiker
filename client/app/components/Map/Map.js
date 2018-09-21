@@ -6,10 +6,10 @@ import TrailData from "./Trails";
 // import TrailMarker from "../../../public/assets/img/";
 
 
-const divStyle = {
-  height: "700px",
-  width: "700px",
-};
+// const divStyle = {
+//   height: "",
+//   width: "700px",
+// };
 
 // const customControl = L.Control.extend({
 
@@ -102,10 +102,9 @@ class Map extends Component {
 
   render() {
     return (
-      <>
-        <div className="azMap h-100 w-100">
+        <div className="azMap">
           <div id="map-wrapper">
-            <div id="map" style={divStyle}>
+            <div id="map">
 
               <div id="button-wrapper">  legend
                 </div>
@@ -118,7 +117,7 @@ class Map extends Component {
           <div className="newTrail">
           </div>
         </div>
-      </>
+
     );
   }
 }
