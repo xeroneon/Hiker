@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 
-import Header from '../Header/Header';
+import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
+
+document.body.style = "";
+
+
 
 const App = ({ children }) => (
   <>
-    <Header />
+    <Nav />
 
     <main>
       {children}
