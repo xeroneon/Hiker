@@ -4,7 +4,7 @@ import 'whatwg-fetch';
 // import { url } from 'inspector';
 // import '../../styles/landing.scss';
 import Button from '../Button/Button'
-
+import Emergency from '../Emergency';
 
 class Landing extends Component {
     
@@ -16,6 +16,7 @@ class Landing extends Component {
         document.body.style = "height: 100vh; width: 100vw; background: url('/assets/img/hiking.jpg') center center no-repeat !important; background-size: cover !important;";
     return(
       <div className="landingDiv">
+          <Emergency />
           <h2><strong>Helping hikers stay safe</strong></h2>
           <Link to="/signup">
             <Button btnName="Join"/>
