@@ -10,9 +10,9 @@ class Button extends Component {
   
   render() {
     return(
-      <form>
-          <button className="main-btn">{this.props.btnName}</button>
-      </form>
+      // <form>
+          <button className="main-btn" onClick={() => this.props.onClick}>{this.props.btnName}</button>
+      // </form>
     );
   }
 

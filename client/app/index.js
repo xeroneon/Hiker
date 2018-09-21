@@ -2,6 +2,11 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import {
+  getFromStorage,
+  setInStorage
+} from "../app/utils/storage";
+
+import {
   BrowserRouter as Router,
   Route,
   Link,
@@ -14,6 +19,7 @@ import NotFound from './components/App/NotFound';
 import Home from './components/Home/Home';
 import Landing from './components/Landing/Landing';
 import SignUp from './components/SignUp/SignUp';
+import SignIn from './components/SignIn/SignIn';
 
 import './styles/styles.scss';
 
@@ -23,6 +29,7 @@ render((
       <Switch>
         <Route exact path="/" component={Landing}/>
         <Route exact path="/signup" component={SignUp}/>
+        <Route exact path="/signin" component={SignIn}/>
         <Route exact path="/Home" component={Home}/>
         <Route component={NotFound}/>
       </Switch>

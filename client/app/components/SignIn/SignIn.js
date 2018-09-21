@@ -7,8 +7,9 @@ import {
     setInStorage
 } from "../../utils/storage";
 import { Redirect } from 'react-router'
+import Button from "../Button/Button"
 
-class SignUp extends Component {
+class SignIn extends Component {
 
     constructor(props) {
         super(props);
@@ -22,6 +23,22 @@ class SignUp extends Component {
         }
     }
 
+    // componentDidMount() {
+    //     const token = getFromStorage("Hiker");
+
+    //     if (token) {
+    //         fetch('/api/account/verify?token=' + token)
+    //             .then(res => res.json())
+    //             .then(json => {
+    //                 if (json.success) {
+    //                     this.setState({
+    //                         token
+    //                     })
+    //                 }
+    //             })
+    //     }
+    // }
+
     handleInputChange = event => {
         const value = event.target.value;
         const name = event.target.name;
@@ -33,25 +50,16 @@ class SignUp extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
         const newUser = {
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
             password: this.state.password,
             email: this.state.email
         }
 
-        axios.post("/api/account/signup", newUser)
+        axios.post("/api/account/signin", newUser)
             .then(res => {
-                console.log("worked")
-
-                axios.post("/api/account/signin", newUser)
-                .then(res => {
-                    console.log(res)
-                    setInStorage("Hiker", res.data.token);
-                    this.setState({
-                        token: res.data.token
-                    })
-                }).catch(err => {
-                    console.log(err);
+                console.log(res)
+                setInStorage("Hiker", res.data.token);
+                this.setState({
+                    token: res.data.token
                 })
             }).catch(err => {
                 console.log(err);
@@ -67,10 +75,9 @@ class SignUp extends Component {
         return (
             <div>
                 <form className="sign-up-form">
-                    <input type="text" placeholder="First Name" className="main-text-box" value={this.state.firstName} name="firstName" onChange={this.handleInputChange} />
-                    <input type="text" placeholder="Last Name" className="main-text-box" value={this.state.lastName} name="lastName" onChange={this.handleInputChange} />
                     <input type="text" placeholder="Email" className="main-text-box" value={this.state.email} name="email" onChange={this.handleInputChange} />
                     <input type="password" placeholder="Password" className="main-text-box" value={this.state.password} name="password" onChange={this.handleInputChange} />
+                    {/* <Button btnName="Sign In" onClick={() => this.handleFormSubmit}/> */}
                     <input type="submit" className="main-btn" onClick={this.handleFormSubmit} />
                 </form>
             </div >
@@ -79,4 +86,4 @@ class SignUp extends Component {
 
 }
 
-export default SignUp;
+export default SignIn;
