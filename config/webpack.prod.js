@@ -13,7 +13,7 @@ module.exports = merge(commonConfig, {
   },
 
   plugins: [
-    new webpack.optimization.minimize({
+    new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false,
         screw_ie8: true
