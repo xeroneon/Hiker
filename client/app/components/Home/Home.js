@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import Example from '../Map/Map';
 import 'whatwg-fetch';
 // import { url } from 'inspector';
+import {
+  getFromStorage,
+  setInStorage
+} from "../../utils/storage";
+import { Redirect } from 'react-router'
+
 
 class Home extends Component {
 
@@ -32,8 +38,14 @@ class Home extends Component {
   // }
 
   render() {
+
+    const token = getFromStorage("Hiker");
+
+    if (!token) {
+      return <Redirect to='/' />;
+    }
     document.body.style = "";
-    return(
+    return (
       <div><Example /></div>
     );
   }
