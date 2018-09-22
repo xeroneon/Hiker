@@ -39,7 +39,6 @@ class Landing extends Component {
         }
     return(
       <div className="landingDiv">
-          <Emergency />
           <h2><strong>Helping hikers stay safe</strong></h2>
           <Link to="/signup">
             <Button btnName="Join"/>
