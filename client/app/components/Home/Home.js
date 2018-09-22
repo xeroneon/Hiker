@@ -7,6 +7,7 @@ import {
   setInStorage
 } from "../../utils/storage";
 import { Redirect } from 'react-router'
+import Emergency from '../Emergency';
 
 
 class Home extends Component {
@@ -46,7 +47,11 @@ class Home extends Component {
     }
     document.body.style = "";
     return (
-      <div><Example /></div>
+      <div>
+        <Example />       
+      
+      </div>
+
     );
   }
 
