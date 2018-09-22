@@ -20,8 +20,10 @@ import Home from './components/Home/Home';
 import Landing from './components/Landing/Landing';
 import SignUp from './components/SignUp/SignUp';
 import SignIn from './components/SignIn/SignIn';
+import Emergency from './components/Emergency';
 
 import './styles/styles.scss';
+
 
 render((
   <Router>
@@ -30,8 +32,9 @@ render((
         <Route exact path="/" component={Landing}/>
         <Route exact path="/signup" component={SignUp}/>
         <Route exact path="/signin" component={SignIn}/>
-        <Route exact path="/Home" component={Home}/>
-        <Route component={NotFound}/>
+        <Route exact path="/home" component={Home}/>
+        <Route exact path="/emergency" component={Emergency}/>
+         <Route component={NotFound}/>
       </Switch>
     </App>
   </Router>
