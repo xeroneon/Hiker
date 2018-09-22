@@ -23,8 +23,7 @@ class SignUp extends Component {
     }
 
     handleInputChange = event => {
-        const value = event.target.value;
-        const name = event.target.name;
+        const { name , value } = event.target;
         this.setState({
             [name]: value
         });
@@ -66,7 +65,7 @@ class SignUp extends Component {
         }
         return (
             <div>
-                <form className="sign-up-form">
+                <form className="main-form">
                     <input type="text" placeholder="First Name" className="main-text-box" value={this.state.firstName} name="firstName" onChange={this.handleInputChange} />
                     <input type="text" placeholder="Last Name" className="main-text-box" value={this.state.lastName} name="lastName" onChange={this.handleInputChange} />
                     <input type="text" placeholder="Email" className="main-text-box" value={this.state.email} name="email" onChange={this.handleInputChange} />

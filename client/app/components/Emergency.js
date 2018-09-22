@@ -55,36 +55,42 @@ class Emergency extends Component {
 
     return (
       <div>
-        <form>
-          First name:
+        <form className="main-form">
+          {/* First name: */}
           <br />
           <input
             onChange={e => this.onChange("firstName", e.target.value)}
             type="text"
             name="firstname"
             value={firstName}
+            className="main-text-box"
+            placeholder="First Name"
           />
           <br />
-          Last name:
+          {/* Last name: */}
           <br />
           <input
             onChange={e => this.onChange("lastName", e.target.value)}
             type="text"
             name="lastname"
             value={lastName}
+            className="main-text-box"
+            placeholder="Last Name"
           />
           <br />
           
-          Phone Number:
+          {/* Phone Number: */}
           <br />
           <input
             onChange={e => this.onChange("phoneNumber", e.target.value)}
             type="number"
             value={phoneNumber}
+            className="main-text-box"
+            placeholder="Phone Number"
           />
           <br />
           <br />
-          <input onClick={this.onSubmit} type="submit" value="Submit" />
+          <input onClick={this.onSubmit} type="submit" value="Submit" className="main-btn"/>
         </form>
       </div>
     );

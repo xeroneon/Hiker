@@ -23,25 +23,8 @@ class SignIn extends Component {
         }
     }
 
-    // componentDidMount() {
-    //     const token = getFromStorage("Hiker");
-
-    //     if (token) {
-    //         fetch('/api/account/verify?token=' + token)
-    //             .then(res => res.json())
-    //             .then(json => {
-    //                 if (json.success) {
-    //                     this.setState({
-    //                         token
-    //                     })
-    //                 }
-    //             })
-    //     }
-    // }
-
     handleInputChange = event => {
-        const value = event.target.value;
-        const name = event.target.name;
+        const { name , value } = event.target;
         this.setState({
             [name]: value
         });
@@ -56,14 +39,12 @@ class SignIn extends Component {
 
         axios.post("/api/account/signin", newUser)
             .then(res => {
-                console.log(res)
                 setInStorage("Hiker", res.data.token);
                 this.setState({
                     token: res.data.token
                 })
-            }).catch(err => {
-                console.log(err);
             })
+            .catch(err => console.log(err));
     }
 
 
@@ -74,11 +55,11 @@ class SignIn extends Component {
         }
         return (
             <div>
-                <form className="sign-up-form">
+                <form className="main-form">
                     <input type="text" placeholder="Email" className="main-text-box" value={this.state.email} name="email" onChange={this.handleInputChange} />
                     <input type="password" placeholder="Password" className="main-text-box" value={this.state.password} name="password" onChange={this.handleInputChange} />
-                    {/* <Button btnName="Sign In" onClick={() => this.handleFormSubmit}/> */}
-                    <input type="submit" className="main-btn" onClick={this.handleFormSubmit} />
+                    {/* <Button btnName="Sign In" onClick={this.handleFormSubmit}/> */}
+                    <button type="submit" className="main-btn" onClick={this.handleFormSubmit}>Sign In</button>
                 </form>
             </div >
         );
