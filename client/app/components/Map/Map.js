@@ -23,6 +23,12 @@ class Map extends Component {
   //   }
   // }
 
+  invalidateSize(map) {
+    if (map) {
+      setTimeout(() => { map.invalidateSize(true) }, 100);
+      Basemap.addTo(map)
+    }
+  };
   componentDidMount() {
     let map = L.map("map").fitWorld();
     let state = {
@@ -33,8 +39,7 @@ class Map extends Component {
       map: map,
       data: []
     }
-
-
+    this.invalidateSize(map)
     map.locate({ setView: true, maxZoom: 10 });
 
     // Creates button and when clicked, locates the user and zooms in to their location
@@ -73,13 +78,17 @@ class Map extends Component {
       // console.log(data)
       trailInfo.data = data.data;
       TrailData(trailInfo).addTo(map)
-
-      $("body").on("click", "#check-in", function (e) {
-        e.preventDefault();
-        console.log("clicked")
-        return
-      })
+      console.log(TrailData)
     }
+   
+    L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoianJuZWxzMTAiLCJhIjoiY2prenI0cGpyMHg5bDN3bGU3bnd2eWZlMCJ9.3APPzTqzXC9bF-V3Up6z3w", {
+      maxZoom: 18,
+      id: "mapbox.outdoors"
+    }).addTo(map);
+
+    // L.DomEvent.addListener('trail-pop', 'click', function (event) {
+    //   console.log(event)
+    // });
   }
 
 

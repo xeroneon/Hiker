@@ -1,3 +1,6 @@
+// import React from 'react';
+import Icon from './Icons';
+// console.log(Icon.options.iconUrl)
 let lat;
 let lon;
 let trailName;
@@ -6,9 +9,9 @@ let trailLength;
 let trailSummary;
 const displayTrails = props => {
     let marker = {};
-    // marker.empty();
-    
-    // console.log(props.map)
+    // const greenIcon = L.icon({
+    //     iconUrl: Icon.options.iconUrl
+    // })
     for (let i = 0; i < props.data.trails.length; i++) {
         // console.log(props.data.trails[i].latitude)
         lat = props.data.trails[i].latitude;
@@ -19,8 +22,8 @@ const displayTrails = props => {
         trailImage = props.data.trails[i].imgMedium;
         trailLength = props.data.trails[i].length;
         trailSummary = props.data.trails[i].summary;
-        marker = L.marker([lat, lon])
-        // console.log(marker)
+        marker = L.marker([lat, lon],[trailName] )
+        // console.log(marker.options)
         marker.bindPopup(`<div class="jumbotron trail-pop" id="trail-pic" style="background-image: url('${trailImage}')">
         <div class="info-container h-100">
         <div class="trail-stuff">
@@ -36,6 +39,11 @@ const displayTrails = props => {
         </div>
         `).addTo(props.map);
     }
+    $('body').on("click", "#check-in", function (e) {
+        // e.preventDefault();
+        console.log(e)
+        return
+      })
 }
 
 
