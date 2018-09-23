@@ -24,7 +24,8 @@ const displayTrails = props => {
         trailSummary = props.data.trails[i].summary;
         marker = L.marker([lat, lon],[trailName] )
         // console.log(marker.options)
-        marker.bindPopup(`<div class="jumbotron trail-pop" id="trail-pic" style="background-image: url('${trailImage}')">
+        var myPopup = L.DomUtil.create('div', 'infoWindow');
+        myPopup.innerHTML = `<div class="jumbotron trail-pop" id="trail-pic" style="background-image: url('${trailImage}')">
         <div class="info-container h-100">
         <div class="trail-stuff">
         <h1 class="display-4 trail-name">${trailName}</h1>
@@ -37,9 +38,12 @@ const displayTrails = props => {
         </div>
         </div>
         </div>
-        `).addTo(props.map);
+        `;
+
+        
+        marker.bindPopup(myPopup).addTo(props.map);
     }
-    $('body').on("click", "#check-in", function (e) {
+    $('#trail-pic', myPopup).on('click', function() {
         // e.preventDefault();
         console.log(e)
         return
