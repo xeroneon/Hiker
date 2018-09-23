@@ -1,5 +1,5 @@
 // import React from 'react';
-import Icon from './Icons';
+import TrailView from './TrailView';
 // console.log(Icon.options.iconUrl)
 let lat;
 let lon;
@@ -22,33 +22,32 @@ const displayTrails = props => {
         trailImage = props.data.trails[i].imgMedium;
         trailLength = props.data.trails[i].length;
         trailSummary = props.data.trails[i].summary;
-        marker = L.marker([lat, lon],[trailName] )
-        // console.log(marker.options)
-        var myPopup = L.DomUtil.create('div', 'infoWindow');
-        myPopup.innerHTML = `<div class="jumbotron trail-pop" id="trail-pic" style="background-image: url('${trailImage}')">
-        <div class="info-container h-100">
-        <div class="trail-stuff">
-        <h1 class="display-4 trail-name">${trailName}</h1>
-        <p class="trail-length m-0">${trailLength} miles</p>
-        <hr class="my-2">
-        <p class="trail-summary">${trailSummary}</p>
-        </div>
-        <div class="lead">
-        <div class="btn btn-primary btn-lg" id="check-in" href="https://www.google.com/" role="button">Check In</div>
-        </div>
-        </div>
-        </div>
-        `;
+        const myPopup = { trailName: trailName, trailLength: trailLength, trailImage: trailImage, trailSummary: trailSummary }
 
-        
-        marker.bindPopup(myPopup).addTo(props.map);
+
+
+        // L.DomUtil.create('div', 'infoWindow');
+        // myPopup.innerHTML = `<div class="jumbotron trail-pop" id="trail-pic" style="background-image: url('${trailImage}')">
+        // <div class="info-container h-100">
+        // <div class="trail-stuff">
+        // <h1 class="display-4 trail-name">${trailName}</h1>
+        // <p class="trail-length m-0">${trailLength} miles</p>
+        // <hr class="my-2">
+        // <p class="trail-summary">${trailSummary}</p>
+        // </div>
+        // <div class="lead">
+        // <div class="btn btn-primary btn-lg" id="check-in" href="https://www.google.com/" role="button">Check In</div>
+        // </div>
+        // </div>
+        // </div>
+        // `;
+        marker = L.marker([lat, lon], myPopup);
+        marker.addTo(props.map);
+        marker.on('click', function (e) {
+            console.log(e.target.options.trailSummary)
+            TrailView(e.target.options)
+        })
     }
-    $('#trail-pic', myPopup).on('click', function() {
-        // e.preventDefault();
-        console.log(e)
-        return
-      })
 }
-
 
 export default displayTrails;

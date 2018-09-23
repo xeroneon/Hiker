@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import TrailsAPI from "../../utils/API";
 import L from 'leaflet';
 import Basemap from "./Basemap";
-import TrailData from "./Trails";
+import Trails from "./Trails";
 import Locate from './Locate';
+import TrailView from './TrailView';
 
 
 // const divStyle = {
@@ -65,6 +66,7 @@ class Map extends Component {
         // trailData = data;
         trailsInArea(data)
       })
+      console.log(data)
     }
 
     // when user drags the map, it runs the function onLocation.  
@@ -77,18 +79,11 @@ class Map extends Component {
     function trailsInArea(data) {
       // console.log(data)
       trailInfo.data = data.data;
-      TrailData(trailInfo).addTo(map)
-      console.log(TrailData)
+      Trails(trailInfo).addTo(map)
     }
-   
-    L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoianJuZWxzMTAiLCJhIjoiY2prenI0cGpyMHg5bDN3bGU3bnd2eWZlMCJ9.3APPzTqzXC9bF-V3Up6z3w", {
-      maxZoom: 18,
-      id: "mapbox.outdoors"
-    }).addTo(map);
 
-    // L.DomEvent.addListener('trail-pop', 'click', function (event) {
-    //   console.log(event)
-    // });
+    // TrailView()
+   
   }
 
 
@@ -100,16 +95,10 @@ class Map extends Component {
       <div className="azMap">
         <div id="map-wrapper">
           <div id="map">
-
-            <div id="button-wrapper">  legend
-                </div>
           </div>
-
-
-
-
-        </div>
         <div className="newTrail">
+        <TrailView>hello</TrailView>
+        </div>
         </div>
       </div>
 

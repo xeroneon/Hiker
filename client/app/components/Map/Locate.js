@@ -60,6 +60,9 @@ const Locate = map => {
 
 
     })
+    // $("body").on('click', '.leaflet-marker-icon', function (e){
+    //     console.log(e)
+    // })
 }
 
 export default Locate;
