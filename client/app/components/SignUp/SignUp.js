@@ -6,24 +6,39 @@ import {
     getFromStorage,
     setInStorage
 } from "../../utils/storage";
-import { Redirect } from 'react-router'
+import { Redirect } from 'react-router';
+import Nav from "../Nav/Nav"
 
 class SignUp extends Component {
 
-    constructor(props) {
-        super(props);
+    state = {
+        isLoading: true,
+        redirect: false,
+        token: getFromStorage("Hiker"),
+        signUpError: '',
+        signInError: '',
+        btnName: "Sign In",
+        route: "signin"
+    }
 
-        this.state = {
-            isLoading: true,
-            redirect: false,
-            token: '',
-            signUpError: '',
-            signInError: ''
+    componentDidMount() {
+        if (!this.state.token) {
+            this.setState({
+                signedIn: true,
+                btnName: "Sign In",
+                route: "signin"
+            })
+        } else {
+            this.setState({
+                signedIn: true,
+                btnName: "Sign Out",
+                route: "signout"
+            })
         }
     }
 
     handleInputChange = event => {
-        const { name , value } = event.target;
+        const { name, value } = event.target;
         this.setState({
             [name]: value
         });
@@ -43,15 +58,15 @@ class SignUp extends Component {
                 console.log("worked")
 
                 axios.post("/api/account/signin", newUser)
-                .then(res => {
-                    console.log(res)
-                    setInStorage("Hiker", res.data.token);
-                    this.setState({
-                        token: res.data.token
+                    .then(res => {
+                        console.log(res)
+                        setInStorage("Hiker", res.data.token);
+                        this.setState({
+                            token: res.data.token
+                        })
+                    }).catch(err => {
+                        console.log(err);
                     })
-                }).catch(err => {
-                    console.log(err);
-                })
             }).catch(err => {
                 console.log(err);
             })
@@ -61,10 +76,11 @@ class SignUp extends Component {
     render() {
         document.body.style = "";
         if (this.state.token) {
-            return <Redirect to='/Home' />;
+            return <Redirect to='/emergency' />;
         }
         return (
             <div>
+                <Nav btnName={this.state.btnName} route={this.state.route} onClick={this.handleClick} />
                 <form className="main-form">
                     <input type="text" placeholder="First Name" className="main-text-box" value={this.state.firstName} name="firstName" onChange={this.handleInputChange} />
                     <input type="text" placeholder="Last Name" className="main-text-box" value={this.state.lastName} name="lastName" onChange={this.handleInputChange} />
