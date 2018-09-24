@@ -72,8 +72,12 @@ footer {
     border: 2px white solid;
     border-radius: 20px;
     color: white;
-    width: 80px;
+    padding: 0 10px 0 10px;
+    min-width: 80px;
+}
 
+.main-btn:hover {
+    cursor: pointer;
 }
 
 #map {

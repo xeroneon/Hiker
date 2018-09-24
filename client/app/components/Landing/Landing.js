@@ -10,19 +10,37 @@ import {
 } from "../../utils/storage";
 import { Redirect } from 'react-router'
 import Emergency from '../Emergency'
+import Nav from "../Nav/Nav"
 
 
 
 class Landing extends Component {
-    
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            redirect: false
+state = {
+            redirect: false,
+            signedIn: false,
+            token: getFromStorage("Hiker"),
+            btnName: "Sign In",
+            route: "signin"
+        }
+
+
+    componentDidMount() {
+        if (!this.state.token) {
+            this.setState({
+                signedIn: true,
+                btnName: "Sign In",
+                route: "signin"
+            })
+        } else {
+            this.setState({
+                signedIn: true,
+                btnName: "Sign Out",
+                route: "signout"
+            })
         }
     }
-    
+
     render() {
         document.body.style = "height: 100vh; width: 100vw; background: url('/assets/img/hiking.jpg') center center no-repeat !important; background-size: cover !important;";
 
@@ -37,15 +55,18 @@ class Landing extends Component {
         if (this.state.redirect) {
             return <Redirect to='/Home' />;
         }
-    return(
-      <div className="landingDiv">
-          <h2><strong>Helping hikers stay safe</strong></h2>
-          <Link to="/signup">
-            <Button btnName="Join"/>
-          </Link>
-      </div>
-    );
-  }
+        return (
+            <div>
+                <Nav btnName={this.state.btnName} route={this.state.route}/>
+                <div className="landingDiv">
+                    <h2><strong>Helping hikers stay safe</strong></h2>
+                    <Link to="/signup">
+                        <Button btnName="Join" />
+                    </Link>
+                </div>
+            </div>
+        );
+    }
 
 }
 
