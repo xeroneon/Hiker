@@ -50,7 +50,7 @@ class Home extends Component {
     return (
       <div>
         <Example />
-        {/* <TrailView />      */}
+        <TrailView>snvs</TrailView>      
       
       </div>
 
