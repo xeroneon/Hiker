@@ -8,11 +8,8 @@ import {
 } from "../../utils/storage";
 import { Redirect } from 'react-router'
 import Emergency from '../Emergency';
-<<<<<<< HEAD
 import Nav from "../Nav/Nav"
-=======
 import TrailView from '../Map/TrailView';
->>>>>>> ca6f206500ddda77cbbff9accf2e539a2c7b0cd3
 
 
 class Home extends Component {
@@ -71,16 +68,10 @@ class Home extends Component {
     document.body.style = "";
     return (
       <div>
-<<<<<<< HEAD
         <Nav btnName={this.state.btnName} route={this.state.route} onClick={this.handleClick}/>
 
         <Example />
 
-=======
-        <Example />
-        {/* <TrailView />      */}
-      
->>>>>>> ca6f206500ddda77cbbff9accf2e539a2c7b0cd3
       </div>
 
     );
