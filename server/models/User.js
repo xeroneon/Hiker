@@ -25,7 +25,8 @@ const UserSchema = new mongoose.Schema({
   isDeleted: {
     type: String,
     default: ''
-  }
+  },
+  trails: []
 });
 
 
