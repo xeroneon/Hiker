@@ -6,25 +6,41 @@ import {
     getFromStorage,
     setInStorage
 } from "../../utils/storage";
-import { Redirect } from 'react-router'
-import Button from "../Button/Button"
+import { Redirect } from 'react-router';
+import Button from "../Button/Button";
+import Nav from "../Nav/Nav";
 
 class SignIn extends Component {
 
-    constructor(props) {
-        super(props);
+    state = {
+        isLoading: true,
+        redirect: false,
+        token: getFromStorage("Hiker"),
+        signUpError: '',
+        signInError: '',
+        btnName: "Sign In",
+        route: "signin"
+    }
 
-        this.state = {
-            isLoading: true,
-            redirect: false,
-            token: '',
-            signUpError: '',
-            signInError: ''
+
+    componentDidMount() {
+        if (!this.state.token) {
+            this.setState({
+                signedIn: true,
+                btnName: "Sign In",
+                route: "signin"
+            })
+        } else {
+            this.setState({
+                signedIn: true,
+                btnName: "Sign Out",
+                route: "signout"
+            })
         }
     }
 
     handleInputChange = event => {
-        const { name , value } = event.target;
+        const { name, value } = event.target;
         this.setState({
             [name]: value
         });
@@ -55,6 +71,7 @@ class SignIn extends Component {
         }
         return (
             <div>
+                <Nav btnName={this.state.btnName} route={this.state.route} />
                 <form className="main-form">
                     <input type="text" placeholder="Email" className="main-text-box" value={this.state.email} name="email" onChange={this.handleInputChange} />
                     <input type="password" placeholder="Password" className="main-text-box" value={this.state.password} name="password" onChange={this.handleInputChange} />
