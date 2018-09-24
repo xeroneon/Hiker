@@ -1,10 +1,19 @@
 import React from 'react';
-// import './Card.css';
+import CardBtn from './CardBtn';
 
-const TrailView = props => (
-        <div className="card w-100 m-auto">hello
-               {props.TrailName}
-        </div>
-)
+const TrailView = props => {
+        // registerTrail = (trail) => {
+
+        // }
+
+        return (
+                <div className="form-group">
+                        {/* {props.trailName}
+                        {props.trailSummary} */}
+                        <button className='w-100'onClick={()=>CardBtn(props)}>{props.trailName}</button>
+                        {/* <CardBtn className="check-in" onClick={() => props.trailName}/>Check-in */}
+                </div>
+        )
+};
 
 export default TrailView;

@@ -5,6 +5,7 @@ import Basemap from "./Basemap";
 import Trails from "./Trails";
 import Locate from './Locate';
 import TrailView from './TrailView';
+import Button from './CardBtn';
 
 
 // const divStyle = {
@@ -16,22 +17,28 @@ import TrailView from './TrailView';
 
 class Map extends Component {
 
-  // constructor(props) {
-  //   super(props);
-
-  //   this.state = {
-  //     something: ''
-  //   }
-  // }
-
   invalidateSize(map) {
+    console.log(this.trail)
     if (map) {
       setTimeout(() => { map.invalidateSize(true) }, 100);
       Basemap.addTo(map)
     }
   };
+
+  state = {
+    displayTrailInfo: true,
+    trailInfo:''
+  }
+  toggleTrailInfo = (trailInfo) => {
+    this.setState({
+      trailInfo: trailInfo
+    })
+    console.log(this.state)
+  }
   componentDidMount() {
     let map = L.map("map").fitWorld();
+    let toggletrailInfo = this.toggleTrailInfo;
+
     let state = {
       lat: 33.5,
       lon: -112
@@ -66,7 +73,7 @@ class Map extends Component {
         // trailData = data;
         trailsInArea(data)
       })
-      console.log(data)
+      // console.log(data)
     }
 
     // when user drags the map, it runs the function onLocation.  
@@ -79,26 +86,26 @@ class Map extends Component {
     function trailsInArea(data) {
       // console.log(data)
       trailInfo.data = data.data;
-      Trails(trailInfo).addTo(map)
+      Trails(trailInfo, toggletrailInfo).addTo(map)
     }
 
-    // TrailView()
-   
   }
 
 
-
-
-
   render() {
+    let shouldDisplayTrailView;
+    if (this.state.displayTrailInfo) {
+      shouldDisplayTrailView = TrailView(this.state.trailInfo)
+    }
+
     return (
       <div className="azMap">
         <div id="map-wrapper">
           <div id="map">
           </div>
-        <div className="newTrail">
-        <TrailView>hello</TrailView>
-        </div>
+          <div className="newTrail">
+            {shouldDisplayTrailView}
+          </div>
         </div>
       </div>
 

@@ -5,7 +5,7 @@ const greenIcon = L.icon({
     iconUrl: Icon.options.iconUrl
 })
 const Locate = map => {
-    console.log(map)
+    // console.log(map)
     let lat;
     let lng;
     const customControl = L.Control.extend({
