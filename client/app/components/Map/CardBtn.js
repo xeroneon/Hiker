@@ -1,10 +1,15 @@
 import React from 'react';
 import axios from 'axios';
 // import './Card.css';
+import {
+    getFromStorage,
+    setInStorage
+} from "../../utils/storage";
 
 const CardBtn = props => {
     var body = {
-        name: props.trailName
+        name: props.trailName,
+        token: getFromStorage("Hiker")
         // lastName: this.state.lastName,
         // phoneNumber: this.state.phoneNumber
     }
