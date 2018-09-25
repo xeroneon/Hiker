@@ -1,22 +1,12 @@
-
 import React, { Component } from "react";
 import axios from 'axios';
-import {
-  getFromStorage,
-  setInStorage
-} from "../utils/storage";
-import { Redirect } from 'react-router';
-import Nav from "./Nav/Nav"
 
 class Emergency extends Component {
   state = {
     firstName: "",
     lastName: "",
     phoneNumber: Number,
-    token: getFromStorage("Hiker"),
-    btnName: "Sign Out",
-    route: "signout",
-    redirect: false
+    time: 0
   };
 
   checkin=() => {
@@ -50,18 +40,17 @@ class Emergency extends Component {
     });
   };
   onSubmit = event => {
-    event.preventDefault();
+    event.preventDefault();   
     console.log(this.state); this.setState({
-      firstName: "",
-      lastName: "",
-      phoneNumber: Number
+        firstName: "",
+        lastName: "",
+        phoneNumber: Number
     })
 
     var body = {
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      phoneNumber: this.state.phoneNumber,
-      token: this.state.token
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        phoneNumber: this.state.phoneNumber
     }
 
     // var body = {
@@ -71,47 +60,26 @@ class Emergency extends Component {
     // }
 
     axios.post("/add-emergency", body)
-      .then(res => {
+    .then(res => {
         console.log(res)
-        this.setState({
-          redirect: true
-        })
-      }).catch(err => {
+            
+    }).catch(err => {
         console.log(err);
-      })
-
-  };
-
-  componentDidMount() {
-    axios.get('/all-emergency-contacts').then(res => {
-      console.log(res)
     })
 
-    if (!this.state.token) {
-      this.setState({
-        signedIn: true,
-        btnName: "Sign In",
-        route: "signin"
-      })
-    } else {
-      this.setState({
-        signedIn: true,
-        btnName: "Sign Out",
-        route: "signout"
-      })
+};
+
+    componentDidMount(){
+        axios.get('/all-emergency-contacts').then(res=>{
+            console.log(res)
+        })
     }
-  }
 
   render() {
     const { firstName, lastName, phoneNumber } = this.state;
 
-    if (this.state.redirect) {
-      return <Redirect to='/Home' />;
-  }
-
     return (
       <div>
-        <Nav btnName={this.state.btnName} route={this.state.route} onClick={this.handleClick} />
         <form className="main-form">
           {/* First name: */}
           <br />
@@ -135,7 +103,7 @@ class Emergency extends Component {
             placeholder="Last Name"
           />
           <br />
-
+          
           {/* Phone Number: */}
           <br />
           <input
@@ -147,7 +115,7 @@ class Emergency extends Component {
           />
           <br />
           <br />
-          <input onClick={this.onSubmit} type="submit" value="Submit" className="main-btn" />
+          <input onClick={this.onSubmit} type="submit" value="Submit" className="main-btn"/>
         </form>
         <h1>{this.state.time}</h1>
         <button onClick={this.checkin}>Check in</button>
