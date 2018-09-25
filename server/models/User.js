@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 const bcrypt = require("bcrypt");
 
 const UserSchema = new mongoose.Schema({
@@ -22,11 +23,13 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     default: 1
   },
+  contacts: [{ type: Schema.Types.ObjectId, ref: 'Emergency' }],
   isDeleted: {
     type: String,
     default: ''
   }
 });
+
 
 UserSchema.methods.generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);

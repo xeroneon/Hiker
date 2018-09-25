@@ -8,31 +8,18 @@ import {
 } from "../../utils/storage";
 import { Redirect } from 'react-router'
 import Emergency from '../Emergency';
-import Nav from "../Nav/Nav"
 import TrailView from '../Map/TrailView';
 
 
 class Home extends Component {
 
-  state = {
-    token: getFromStorage("Hiker"),
-    btnName: "Sign In",
-    route: "signin"
-  }
+  constructor(props) {
+    super(props);
 
-  componentDidMount() {
-    if (!this.state.token) {
-      this.setState({
-        signedIn: true,
-        btnName: "Sign In",
-        route: "signin"
-      })
-    } else {
-      this.setState({
-        signedIn: true,
-        btnName: "Sign Out",
-        route: "signout"
-      })
+    this.state = {
+      token: '',
+
+
     }
   }
 
@@ -52,12 +39,6 @@ class Home extends Component {
   //   }
   // }
 
-  handleClick() {
-    if (this.state.token) {
-      localStorage.removeItem("Hiker");
-    }
-  }
-
   render() {
 
     const token = getFromStorage("Hiker");
@@ -68,10 +49,9 @@ class Home extends Component {
     document.body.style = "";
     return (
       <div>
-        <Nav btnName={this.state.btnName} route={this.state.route} onClick={this.handleClick}/>
-
         <Example />
-
+        <TrailView>snvs</TrailView>      
+      
       </div>
 
     );
