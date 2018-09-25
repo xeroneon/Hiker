@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 const TrailSchema = new mongoose.Schema({
-   name: {
-      type: String,
-      default:'',
-    }
-  })
+  user: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  name: {
+    type: String,
+    default: '',
+  }
+})
 
-  module.exports = mongoose.model('Trail', TrailSchema);
+module.exports = mongoose.model('Trail', TrailSchema);

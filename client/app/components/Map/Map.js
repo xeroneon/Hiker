@@ -5,8 +5,6 @@ import Basemap from "./Basemap";
 import Trails from "./Trails";
 import Locate from './Locate';
 import TrailView from './TrailView';
-import Button from './CardBtn';
-
 
 // const divStyle = {
 //   height: "",
