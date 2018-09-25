@@ -6,8 +6,34 @@ class Emergency extends Component {
   state = {
     firstName: "",
     lastName: "",
-    phoneNumber: Number
+    phoneNumber: Number,
+    time: 0
   };
+
+  checkin=() => {
+    var body = {
+      body: "sends after timmer is up",
+      to: "+14022022526",  
+      from: "+18508528647" 
+      }
+        
+    var myTimer = setInterval(()=>{
+        this.setState({
+        time: this.state.time+1
+
+      })
+      console.log(this.state.time)
+      if(this.state.time === 10) {
+        axios.post ('/send-text-message', body).then((response) => {
+          console.log(response)
+        })
+        clearInterval(myTimer)
+        alert('time is up')
+      }
+    },1000)
+
+  }
+
 
   onChange = (key, value) => {
     this.setState({
@@ -92,6 +118,8 @@ class Emergency extends Component {
           <br />
           <input onClick={this.onSubmit} type="submit" value="Submit" className="main-btn"/>
         </form>
+        <h1>{this.state.time}</h1>
+        <button onClick={this.checkin}>Check in</button>
       </div>
     );
   }
