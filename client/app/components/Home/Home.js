@@ -67,7 +67,7 @@ class Home extends Component {
     }
     document.body.style = "";
     return (
-      <div>
+      <div className='frame h-100'>
         <Nav btnName={this.state.btnName} route={this.state.route} onClick={this.handleClick}/>
 
         <Example />

@@ -57,6 +57,7 @@ const displayTrails = (props, handleClick) => {
         // marker.bindPopup(myPopup).addTo(props.map);
         marker.on('click', function (e) {
             console.log(e.target.options)
+            
             // let image = e.target.options.trailImage;
             // let name = e.target.options.trailName;
             // let length = e.target.options.trailLength;

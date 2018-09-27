@@ -18,7 +18,9 @@ body {
     z-index: -1;
     font-family: 'Montserrat', sans-serif;
 }
-
+#app {
+    height: 100vh;
+}
 .main-form {
     width: 100%;
     text-align: center;
@@ -81,15 +83,15 @@ footer {
 }
 
 #map {
-    height: 50vw;
+    height: 80vh;
     width: 100vw;
 }
 .azMap {
-    height: 50vw;
+    height: 100vh;
     width: 100vw;
 }
 #map-wrapper {
-    height: 50vw;
+    height: 100vh;
     width: 100vw;
 }
 
@@ -146,3 +148,11 @@ footer {
     background-repeat: no-repeat;
     background-position: center center;
 }
+
+.modal.fade .modal-dialog {
+    transform: translate3d(0, 100vh, 0);
+  }
+  
+  .modal.in .modal-dialog {
+    transform: translate3d(0, 0, 0);
+  }
