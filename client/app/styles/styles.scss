@@ -17,6 +17,11 @@ body {
     );
     z-index: -1;
     font-family: 'Montserrat', sans-serif;
+    padding-bottom: 0;
+}
+
+main {
+    min-height: 89vh;
 }
 
 .contacts {
@@ -39,6 +44,11 @@ body {
         color: white;
         float: right;
     }
+}
+
+.title {
+    margin-left: 10px;
+    margin-top: 10px;
 }
 
 .account-page {
@@ -93,8 +103,9 @@ footer {
     background: $navAlpha;
     width: 100vw;
     height: 8vh;
-    position: relative;
-    bottom: 0vh;
+    // position: relative;
+    // bottom: 0vh;
+    margin-bottom: 0;
     color:white;
     margin-top: 20px;
     

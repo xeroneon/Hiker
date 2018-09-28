@@ -15,33 +15,12 @@ class Account extends Component {
 
     state = {
         token: getFromStorage("Hiker"),
-        btnName: "Sign In",
-        route: "signin",
         contacts: [1],
         loading: true
     };
 
     componentDidMount() {
-        if (!this.state.token) {
-            this.setState({
-                signedIn: true,
-                btnName: "Sign In",
-                route: "signin"
-            });
-        } else {
-            this.setState({
-                signedIn: true,
-                btnName: "Sign Out",
-                route: "signout"
-            });
-        };
 
-        // axios.get("api/account/contacts?token=" + this.state.token )
-        //     .then(res => {
-        //         this.setState({
-        //             contacts: res.data.contacts
-        //         })
-        //     })
     }
 
     componentWillMount() {
@@ -129,7 +108,7 @@ class Account extends Component {
         document.body.style = "";
         return (
             <div className="account-page">
-                <Nav btnName={this.state.btnName} route={this.state.route} onClick={this.handleClick} />
+                <Nav btnName={this.state.btnName} route={this.state.route} onClick={this.handleClick} token={this.state.token}/>
 
                 <h1 className="text-white">Account Settings</h1>
 
