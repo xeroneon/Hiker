@@ -12,6 +12,7 @@ let trailLength;
 let trailSummary;
 const displayTrails = (props, handleClick) => {
     let marker = {};
+    // props.map.removeLayer(marker);
     // const greenIcon = L.icon({
     //     iconUrl: Icon.options.iconUrl
     // })

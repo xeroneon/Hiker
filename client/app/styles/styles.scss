@@ -83,6 +83,7 @@ footer {
 }
 
 #map {
+<<<<<<< HEAD
     height: 80vh;
     width: 100vw;
 }
@@ -92,6 +93,17 @@ footer {
 }
 #map-wrapper {
     height: 100vh;
+=======
+    height: 50vh;
+    width: 100vw;
+}
+.azMap {
+    height: 50vh;
+    width: 100vw;
+}
+#map-wrapper {
+    height: 50vh;
+>>>>>>> e92fb1d9b5a9ee76740b8cbab8086992d84115c5
     width: 100vw;
 }
 

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 const bcrypt = require("bcrypt");
+var CronJob = require('cron').CronJob;
 
 const UserSchema = new mongoose.Schema({
   firstName: {
@@ -23,6 +24,10 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     default: 1
   },
+  checkedIn: {
+    type: Boolean,
+    default: false
+  },
   contacts: [{ type: Schema.Types.ObjectId, ref: 'Emergency' }],
   isDeleted: {
     type: String,
@@ -39,5 +44,11 @@ UserSchema.methods.generateHash = function (password) {
 UserSchema.methods.validPassword = function (password) {
   return bcrypt.compareSync(password, this.password);
 };
+
+UserSchema.methods.checkIn = function (time, name) {
+  const job = new CronJob('* * * * * *', function() {
+    console.log('You will see this message every second');
+  }, null, true, 'America/Los_Angeles');
+}
 
 module.exports = mongoose.model('User', UserSchema); 

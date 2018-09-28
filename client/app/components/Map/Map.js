@@ -82,7 +82,7 @@ class Map extends Component {
     // creates markers and popups for all the points. 
     // and adds a clickable function for it. 
     function trailsInArea(data) {
-      // console.log(data)
+      // map.removeLayer(Trails);
       trailInfo.data = data.data;
       Trails(trailInfo, toggletrailInfo).addTo(map)
     }
