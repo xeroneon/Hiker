@@ -184,7 +184,7 @@ class Account extends Component {
                     <br/>
                     <br/>
 
-                    <Link to="/signup">
+                    <Link to="/emergency">
                         <Button btnName="Add Contact" />
                     </Link>
                 </form>
