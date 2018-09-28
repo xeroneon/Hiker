@@ -46,23 +46,28 @@ module.exports = (app) => {
                             //create date using momentJS and format for use
                             var date = moment().add(req.body.hours, 's').format();
                             //schedule job using the date
-                            schedule.scheduleJob(date, function (user) {
-                                user.contacts.map(contacts => {
-                                    // console.log(data)
-                                    client.messages.create({
-                                        body: `${user.firstName} might be in trouble, They are at {put trail name here}, give them a call to see if they are okay`,
-                                        to: contacts.phoneNumber,  // Text this number
-                                        from: "+18508528647" // From a valid Twilio number
-                                    })
-                                        .then((message) => {
-                                            console.log(message.sid)
-                            
-                                            res.send(message.sid)
-                                        });
+                            schedule.scheduleJob(date, function (userId) {
+
+                                User.findOne({ _id: userId})
+                                    .exec((err, user) => {
+                                        user.contacts.map(contacts => {
+                                            // console.log(data)
+                                            client.messages.create({
+                                                body: `${user.firstName} might be in trouble, They are at {put trail name here}, give them a call to see if they are okay`,
+                                                to: contacts.phoneNumber,  // Text this number
+                                                from: "+18508528647" // From a valid Twilio number
+                                            })
+                                                .then((message) => {
+                                                    console.log(message.sid)
                                     
-                                })
+                                                    res.send(message.sid)
+                                                });
+                                            
+                                        })
+
+                                    })
                                 
-                            }.bind(null, user));
+                            }.bind(null, user._id));
                         res.end();
                     })
             })
