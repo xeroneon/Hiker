@@ -22,6 +22,7 @@ import SignUp from './components/SignUp/SignUp';
 import SignIn from './components/SignIn/SignIn';
 import SignOut from './components/SignOut/SignOut';
 import Emergency from './components/Emergency/Emergency';
+import Account from './components/Account/Account';
 
 import './styles/styles.scss';
 
@@ -34,6 +35,7 @@ render((
         <Route exact path="/signup" component={SignUp}/>
         <Route exact path="/signin" component={SignIn}/>
         <Route exact path="/signout" component={SignOut}/>
+        <Route exact path="/account" component={Account}/>
         <Route exact path="/home" component={Home}/>
         <Route exact path="/emergency" component={Emergency}/>
          <Route component={NotFound}/>
