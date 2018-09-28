@@ -1,6 +1,8 @@
 var Emergency = require("../../models/Emergency");
 var User = require("../../models/User");
 var UserSession = require("../../models/UserSession");
+const mongoose = require('mongoose');
+
 
 
 module.exports = (app) => {
@@ -20,14 +22,15 @@ module.exports = (app) => {
                 .exec((err, user) => {
                     console.log(user);
 
-                    var newContact = new Emergency({
+                    const newContact = new Emergency({
                         firstName: req.body.firstName,
                         lastName: req.body.lastName,
                         phoneNumber: req.body.phoneNumber,
-                        user: user._id
+                        user: user._id,
+                        _id: new mongoose.Types.ObjectId()
                     })
 
-                    user.contacts.push(newContact)
+                    user.contacts.push(newContact._id)
 
                     user.save(err => {
                         if (err) return console.log(err);
