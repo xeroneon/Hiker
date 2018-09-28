@@ -3,14 +3,13 @@ import { Link } from "react-router-dom";
 import 'whatwg-fetch';
 // import { url } from 'inspector';
 // import '../../styles/landing.scss';
-import Button from '../Button/Button'
+import Button from '../Button/Button';
 import {
     getFromStorage,
     setInStorage
 } from "../../utils/storage";
-import { Redirect } from 'react-router'
-import Emergency from '../Emergency'
-import Nav from "../Nav/Nav"
+import { Redirect } from 'react-router';
+import Nav from "../Nav/Nav";
 
 
 
