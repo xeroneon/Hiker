@@ -45,7 +45,8 @@ module.exports = (app) => {
                     newContact.save(err => {
                         if (err) return console.log(err)
                         return res.send({
-                            success: true
+                            success: true,
+                            message: "contact saved"
                         });
                     })
 

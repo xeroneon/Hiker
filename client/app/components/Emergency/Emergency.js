@@ -16,7 +16,8 @@ class Emergency extends Component {
     route: "signout",
     redirect: false,
     success: "",
-    error: ""
+    error: "",
+    token: getFromStorage("Hiker")
   };
 
 
@@ -30,11 +31,11 @@ class Emergency extends Component {
     event.preventDefault();
     console.log(this.state);
 
-    this.setState({
-      firstName: "",
-      lastName: "",
-      phoneNumber: Number,
-    })
+    // this.setState({
+    //   firstName: "",
+    //   lastName: "",
+    //   phoneNumber: Number,
+    // })
 
     var body = {
       firstName: this.state.firstName,
@@ -46,9 +47,12 @@ class Emergency extends Component {
     axios.post("/add-emergency", body)
       .then(res => {
         console.log(res)
-        if(res.message) {
+        if(res.data.success) {
           this.setState({
-            success: "Contact Added successfully"
+            success: "Contact Added successfully",
+            firstName: "",
+            lastName: "",
+            phoneNumber: Number
           })
 
           setTimeout(function() {
@@ -60,6 +64,12 @@ class Emergency extends Component {
           this.setState({
             error: "Server Error, try again"
           })
+
+          setTimeout(function() {
+            this.setState({
+              error: ""
+            })
+          }.bind(this), 3000)
         }
 
       }).catch(err => {
@@ -86,13 +96,17 @@ class Emergency extends Component {
     const { firstName, lastName, phoneNumber } = this.state;
     if (this.state.redirect) {
       return <Redirect to='/Home' />;
-  }
+    }
+
+    if(!this.state.token) {
+      return <Redirect to="/" />;
+    }
 
     return (
       <div>
-        <Nav btnName={this.state.btnName} route={this.state.route} onClick={this.handleClick} />
+        <Nav btnName={this.state.btnName} route={this.state.route} onClick={this.handleClick} token={this.state.token}/>
 
-        <h2 className="text-white">Emergency Contacts</h2>
+        <h2 className="text-white title">Emergency Contacts</h2>
         <h3 className="text-danger">{this.state.error}</h3>
         <h3 className="text-success">{this.state.success}</h3>
 
