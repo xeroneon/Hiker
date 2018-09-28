@@ -54,10 +54,38 @@ module.exports = (app) => {
     })
 
     //retrive contacts from the database
-    app.get('/all-emergency-contacts', function (req, res){
-        Emergency.find().then(function (data){
-            res.send(data)
-        }) 
+    app.get('/api/account/contacts', function (req, res){
+        UserSession.findOne({_id: req.query.token})
+            .exec((err, session) => {
+                if(err) {
+                    return res.json({
+                        success: false
+                    })
+                }
+                User.findOne({_id: session.userId})
+                    .populate("contacts")
+                    .exec((err, user) => {
+                        if(err) {
+                            return res.json({
+                                success: false
+                            })
+                        }
+                        res.json({
+                            success: true,
+                            contacts: user.contacts
+                        })
+                    })
+            })
+    });
+
+    app.post("/api/account/delete-contact", function (req, res) {
+        Emergency.findOne({_id: req.body.contactId})
+        .remove()
+        .exec((err, contact) => {
+            res.json({
+                success: true
+            })
+        })
     })
 
     app.post("/api/test", (req, res) => {
