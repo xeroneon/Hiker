@@ -7,7 +7,6 @@ import {
   setInStorage
 } from "../../utils/storage";
 import { Redirect } from 'react-router'
-import Emergency from '../Emergency';
 import Nav from "../Nav/Nav"
 import TrailView from '../Map/TrailView';
 

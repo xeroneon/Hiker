@@ -21,6 +21,12 @@ module.exports = (app) => {
             User.findOne({_id: session.userId})
                 .exec((err, user) => {
                     console.log(user);
+                    if (err) {
+                        res.json({
+                            success: false,
+                            message: "Server Error, Try Again"
+                        })
+                    }
 
                     const newContact = new Emergency({
                         firstName: req.body.firstName,
@@ -39,8 +45,7 @@ module.exports = (app) => {
                     newContact.save(err => {
                         if (err) return console.log(err)
                         return res.send({
-                            success: true,
-                            message: "Good"
+                            success: true
                         });
                     })
 

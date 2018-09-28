@@ -21,7 +21,7 @@ import Landing from './components/Landing/Landing';
 import SignUp from './components/SignUp/SignUp';
 import SignIn from './components/SignIn/SignIn';
 import SignOut from './components/SignOut/SignOut';
-import Emergency from './components/Emergency';
+import Emergency from './components/Emergency/Emergency';
 
 import './styles/styles.scss';
 
