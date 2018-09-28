@@ -27,6 +27,12 @@ module.exports = (app) => {
                         user: user._id
                     })
 
+                    user.contacts.push(newContact)
+
+                    user.save(err => {
+                        if (err) return console.log(err);
+                    })
+
                     newContact.save(err => {
                         if (err) return console.log(err)
                         return res.send({

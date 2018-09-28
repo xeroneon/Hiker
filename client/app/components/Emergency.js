@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import axios from 'axios';
+import {
+  getFromStorage,
+  setInStorage
+} from "../utils/storage";
 
 class Emergency extends Component {
   state = {
@@ -9,27 +13,27 @@ class Emergency extends Component {
     time: 0
   };
 
-  checkin=() => {
+  checkin = () => {
     var body = {
       body: "sends after timmer is up",
-      to: "+14022022526",  
-      from: "+18508528647" 
-      }
-        
-    var myTimer = setInterval(()=>{
-        this.setState({
-        time: this.state.time+1
+      to: "+14022022526",
+      from: "+18508528647"
+    }
+
+    var myTimer = setInterval(() => {
+      this.setState({
+        time: this.state.time + 1
 
       })
       console.log(this.state.time)
-      if(this.state.time === 10) {
-        axios.post ('/send-text-message', body).then((response) => {
+      if (this.state.time === 10) {
+        axios.post('/send-text-message', body).then((response) => {
           console.log(response)
         })
         clearInterval(myTimer)
         alert('time is up')
       }
-    },1000)
+    }, 1000)
 
   }
 
@@ -40,17 +44,18 @@ class Emergency extends Component {
     });
   };
   onSubmit = event => {
-    event.preventDefault();   
+    event.preventDefault();
     console.log(this.state); this.setState({
-        firstName: "",
-        lastName: "",
-        phoneNumber: Number
+      firstName: "",
+      lastName: "",
+      phoneNumber: Number,
     })
 
     var body = {
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        phoneNumber: this.state.phoneNumber
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      phoneNumber: this.state.phoneNumber,
+      token: getFromStorage("Hiker")
     }
 
     // var body = {
@@ -60,20 +65,20 @@ class Emergency extends Component {
     // }
 
     axios.post("/add-emergency", body)
-    .then(res => {
+      .then(res => {
         console.log(res)
-            
-    }).catch(err => {
+
+      }).catch(err => {
         console.log(err);
+      })
+
+  };
+
+  componentDidMount() {
+    axios.get('/all-emergency-contacts').then(res => {
+      console.log(res)
     })
-
-};
-
-    componentDidMount(){
-        axios.get('/all-emergency-contacts').then(res=>{
-            console.log(res)
-        })
-    }
+  }
 
   render() {
     const { firstName, lastName, phoneNumber } = this.state;
@@ -103,7 +108,7 @@ class Emergency extends Component {
             placeholder="Last Name"
           />
           <br />
-          
+
           {/* Phone Number: */}
           <br />
           <input
@@ -115,7 +120,7 @@ class Emergency extends Component {
           />
           <br />
           <br />
-          <input onClick={this.onSubmit} type="submit" value="Submit" className="main-btn"/>
+          <input onClick={this.onSubmit} type="submit" value="Submit" className="main-btn" />
         </form>
         <h1>{this.state.time}</h1>
         <button onClick={this.checkin}>Check in</button>

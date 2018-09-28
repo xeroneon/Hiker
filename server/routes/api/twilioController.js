@@ -38,26 +38,31 @@ module.exports = (app) => {
                 if (err) return console.log(err);
                 //find user from sessions user id
                 User.findOne({ _id: session.userId })
+                    .populate("contacts")
                     .exec((err, user) => {
                         //set the user checked in to true and save to database
                         user.checkedIn = true;
                         user.save();
-                        //create date using momentJS and format for use
-                        var date = moment().add(req.body.hours, 'h').format();
-                        //schedule job using the date
-                        schedule.scheduleJob(date, function (userId) {
-                            //find user using session id
-                            User.findOne({ _id: userId })
-                                .exec((err, user) => {
-                                    //if they are checked in it will fire
-                                    if (user.checkedIn === true) {
-                                        console.log("worked");
-                                    } else {
-                                        console.log("user checked out");
-
-                                    }
+                            //create date using momentJS and format for use
+                            var date = moment().add(req.body.hours, 's').format();
+                            //schedule job using the date
+                            schedule.scheduleJob(date, function (user) {
+                                user.contacts.map(contacts => {
+                                    // console.log(data)
+                                    client.messages.create({
+                                        body: `${user.firstName} might be in trouble, They are at {put trail name here}, give them a call to see if they are okay`,
+                                        to: contacts.phoneNumber,  // Text this number
+                                        from: "+18508528647" // From a valid Twilio number
+                                    })
+                                        .then((message) => {
+                                            console.log(message.sid)
+                            
+                                            res.send(message.sid)
+                                        });
+                                    
                                 })
-                        }.bind(null, session.userId));
+                                
+                            }.bind(null, user));
                         res.end();
                     })
             })
