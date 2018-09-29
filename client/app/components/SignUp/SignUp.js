@@ -7,7 +7,7 @@ import {
     setInStorage
 } from "../../utils/storage";
 import { Redirect } from 'react-router';
-import Nav from "../Nav/Nav"
+import Nav from "../Nav/Nav";
 
 class SignUp extends Component {
 
@@ -62,7 +62,8 @@ class SignUp extends Component {
                         console.log(res)
                         setInStorage("Hiker", res.data.token);
                         this.setState({
-                            token: res.data.token
+                            token: res.data.token,
+                            redirect: true
                         })
                     }).catch(err => {
                         console.log(err);
@@ -75,7 +76,7 @@ class SignUp extends Component {
 
     render() {
         document.body.style = "";
-        if (this.state.token) {
+        if (this.state.redirect) {
             return <Redirect to='/emergency' />;
         }
         return (

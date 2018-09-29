@@ -217,4 +217,45 @@ module.exports = (app) => {
             });
         });
     });
+
+    app.post("/api/account/update", (req, res, next) => {
+
+        const { firstName, lastName, email, password } = req.body
+
+
+        UserSession.findOne({_id: req.body.token})
+            .exec((err, session) => {
+                if (err) return console.log(err);
+
+                User.findOne({ _id: session.userId })
+                    .exec((err, user) => {
+                        if (firstName) {
+                            user.firstName = firstName
+                        }
+                        if(lastName) {
+                            user.lastName = lastName
+                        }
+                        if(email) {
+                            user.email = email
+                        }
+                        if(password) {
+                            user.password = user.generateHash(password)
+                        }
+
+                        user.save((err, user) => {
+                            if(err) {
+                                res.json({
+                                    success: false,
+                                    message: "Internal Server Error"
+                                })
+                            } else {
+                                res.json({
+                                    success: true,
+                                    message: "User saved"
+                                })
+                            }
+                        });
+                    })
+            })
+    });
 };

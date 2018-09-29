@@ -7,7 +7,6 @@ import {
   setInStorage
 } from "../../utils/storage";
 import { Redirect } from 'react-router'
-import Emergency from '../Emergency';
 import Nav from "../Nav/Nav"
 import TrailView from '../Map/TrailView';
 
@@ -16,41 +15,7 @@ class Home extends Component {
 
   state = {
     token: getFromStorage("Hiker"),
-    btnName: "Sign In",
-    route: "signin"
   }
-
-  componentDidMount() {
-    if (!this.state.token) {
-      this.setState({
-        signedIn: true,
-        btnName: "Sign In",
-        route: "signin"
-      })
-    } else {
-      this.setState({
-        signedIn: true,
-        btnName: "Sign Out",
-        route: "signout"
-      })
-    }
-  }
-
-  // componentDidMount() {
-  //   const token = getFromStorage("Hiker");
-
-  //   if (token) {
-  //     fetch('/api/account/verify?token=' + token)
-  //       .then(res => res.json())
-  //       .then(json => {
-  //         if (json.success) {
-  //           this.setState({
-  //             token
-  //           })
-  //         }
-  //       })
-  //   }
-  // }
 
   handleClick() {
     if (this.state.token) {
@@ -67,8 +32,13 @@ class Home extends Component {
     }
     document.body.style = "";
     return (
+<<<<<<< HEAD
       <div className='frame h-100'>
         <Nav btnName={this.state.btnName} route={this.state.route} onClick={this.handleClick}/>
+=======
+      <div>
+        <Nav onClick={this.handleClick} token={this.state.token}/>
+>>>>>>> f0e23ba0d8f583e7226e0d9f148d0600bb89b442
 
         <Example />
 
