@@ -18,6 +18,7 @@ body {
     z-index: -1;
     font-family: 'Montserrat', sans-serif;
     padding-bottom: 0;
+    font-size: 14px;
 }
 
 main {
@@ -59,9 +60,9 @@ main {
         margin-left: 20px;
     }
 }
-#app {
-    height: 100vh;
-}
+// #app {
+//     height: 100vh;
+// }
 .main-form {
     width: 100%;
     text-align: center;
@@ -99,8 +100,21 @@ main {
         text-decoration: none;
     }
 
+    margin-bottom: 0;
+
     
 
+}
+
+.trail-btn {
+    min-height: 5vh;
+    margin-top: 10px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.container {
+    text-align: center;
 }
 
 footer {
@@ -136,11 +150,11 @@ footer {
     width: 100vw;
 }
 .azMap {
-    height: 100vh;
+    height: 70vh;
     width: 100vw;
 }
 #map-wrapper {
-    height: 100vh;
+    height: 70vh;
     width: 100vw;
 }
 
