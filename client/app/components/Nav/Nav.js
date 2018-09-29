@@ -13,10 +13,14 @@ const Nav = props => {
       <h2>
         <strong>
           HIKER
-          </strong>
+        </strong>
       </h2>
     </Link>
-    <Link to={props.route}><Button btnName={props.btnName} onClick={props.handleClick}/></Link>
+    {props.token && 
+    
+    <Link to="/account"><Button btnName="Account" /></Link>
+    }
+    <Link to={props.token ? "/signout" : "/signin"}><Button btnName={props.token ? "Sign Out" : "Sign In"} onClick={props.handleClick}/></Link>
   </nav>
 };
 export default Nav;

@@ -11,7 +11,7 @@ const App = ({ children }) => (
   <>
     {/* <Nav /> */}
 
-    <main>
+    <main className='main h-100'>
       {children}
     </main>
 
