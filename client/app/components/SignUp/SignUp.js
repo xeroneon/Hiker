@@ -15,10 +15,7 @@ class SignUp extends Component {
         isLoading: true,
         redirect: false,
         token: getFromStorage("Hiker"),
-        signUpError: '',
-        signInError: '',
-        btnName: "Sign In",
-        route: "signin"
+        error: ''
     }
 
     componentDidMount() {
@@ -44,6 +41,11 @@ class SignUp extends Component {
         });
     };
 
+    validateEmail = email => {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+
     handleFormSubmit = event => {
         event.preventDefault();
         const newUser = {
@@ -51,6 +53,54 @@ class SignUp extends Component {
             lastName: this.state.lastName,
             password: this.state.password,
             email: this.state.email
+        }
+
+        if(!this.validateEmail(this.state.email)) {
+
+            setTimeout(function() {
+                this.setState({
+                  error: ""
+                })
+              }.bind(this), 3000)
+
+            
+            return this.setState({
+                error: "Not a valid email"
+            })
+        }
+
+        if(!this.state.firstName) {
+            setTimeout(function() {
+                this.setState({
+                  error: ""
+                })
+              }.bind(this), 3000)
+
+            return this.setState({
+                error: "You need a first name"
+            })
+        }
+        if(!this.state.lastName) {
+            setTimeout(function() {
+                this.setState({
+                  error: ""
+                })
+              }.bind(this), 3000)
+
+            return this.setState({
+                error: "You need a last name"
+            })
+        }
+        if(!this.state.password) {
+            setTimeout(function() {
+                this.setState({
+                  error: ""
+                })
+              }.bind(this), 3000)
+
+            return this.setState({
+                error: "You need a password"
+            })
         }
 
         axios.post("/api/account/signup", newUser)
@@ -81,7 +131,8 @@ class SignUp extends Component {
         }
         return (
             <div>
-                <Nav btnName={this.state.btnName} route={this.state.route} onClick={this.handleClick} />
+                <Nav onClick={this.handleClick} token={this.state.token}/>
+                <h3 className="text-danger">{this.state.error}</h3>
                 <form className="main-form">
                     <input type="text" placeholder="First Name" className="main-text-box" value={this.state.firstName} name="firstName" onChange={this.handleInputChange} />
                     <input type="text" placeholder="Last Name" className="main-text-box" value={this.state.lastName} name="lastName" onChange={this.handleInputChange} />
