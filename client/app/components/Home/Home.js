@@ -32,8 +32,13 @@ class Home extends Component {
     }
     document.body.style = "";
     return (
+<<<<<<< HEAD
+      <div className='frame h-100'>
+        <Nav btnName={this.state.btnName} route={this.state.route} onClick={this.handleClick}/>
+=======
       <div>
         <Nav onClick={this.handleClick} token={this.state.token}/>
+>>>>>>> f0e23ba0d8f583e7226e0d9f148d0600bb89b442
 
         <Example />
 

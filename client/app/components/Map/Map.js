@@ -5,7 +5,7 @@ import Basemap from "./Basemap";
 import Trails from "./Trails";
 import Locate from './Locate';
 import TrailView from './TrailView';
-
+import Popup from './Popup';
 // const divStyle = {
 //   height: "",
 //   width: "700px",
@@ -82,7 +82,7 @@ class Map extends Component {
     // creates markers and popups for all the points. 
     // and adds a clickable function for it. 
     function trailsInArea(data) {
-      // console.log(data)
+      // map.removeLayer(Trails);
       trailInfo.data = data.data;
       Trails(trailInfo, toggletrailInfo).addTo(map)
     }
@@ -102,7 +102,7 @@ class Map extends Component {
           <div id="map">
           </div>
           <div className="newTrail">
-            {shouldDisplayTrailView}
+          {shouldDisplayTrailView}
           </div>
         </div>
       </div>
