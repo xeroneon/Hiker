@@ -5,7 +5,7 @@ import Basemap from "./Basemap";
 import Trails from "./Trails";
 import Locate from './Locate';
 import TrailView from './TrailView';
-
+import Popup from './Popup';
 // const divStyle = {
 //   height: "",
 //   width: "700px",
@@ -102,7 +102,7 @@ class Map extends Component {
           <div id="map">
           </div>
           <div className="newTrail">
-            {shouldDisplayTrailView}
+          {shouldDisplayTrailView}
           </div>
         </div>
       </div>

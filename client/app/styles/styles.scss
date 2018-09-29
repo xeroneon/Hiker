@@ -58,6 +58,8 @@ body {
         text-decoration: none;
     }
 
+    
+
 }
 
 footer {
@@ -83,8 +85,7 @@ footer {
 }
 
 #map {
-<<<<<<< HEAD
-    height: 80vh;
+    height: 70vh;
     width: 100vw;
 }
 .azMap {
@@ -93,17 +94,6 @@ footer {
 }
 #map-wrapper {
     height: 100vh;
-=======
-    height: 50vh;
-    width: 100vw;
-}
-.azMap {
-    height: 50vh;
-    width: 100vw;
-}
-#map-wrapper {
-    height: 50vh;
->>>>>>> e92fb1d9b5a9ee76740b8cbab8086992d84115c5
     width: 100vw;
 }
 
@@ -150,12 +140,30 @@ footer {
     overflow: auto;
 }
 
-.trail-image {
-    float: left;
-    width: 50%;
-}
+.bubble{
+    animation: animateElement linear .3s;
+    animation-iteration-count: 1;
+    background:#e7e7e7;
+    margin-bottom:5px;
+    width:100%;
+    min-height:30px;
+    border-radius:10px;
+   }
+  
+  @keyframes animateElement{
+    0% {
+      opacity:0;
+      transform:  translate(0px,10px);
+    }
+    100% {
+      opacity:1;
+      transform:  translate(0px,0px);
+    }
+  }
 
-#trail-pic {
+img {
+    width: 75%;
+    display:block;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -168,3 +176,25 @@ footer {
   .modal.in .modal-dialog {
     transform: translate3d(0, 0, 0);
   }
+
+  .modal.fade{
+      opacity: 1 !important;
+  }
+  .modal.show .modal-dialog {
+    -webkit-transform: translate(0,0);
+    transform: translate(0,0);
+}
+.modal-dialog{
+    background-image:
+        linear-gradient(
+        -45deg, 
+        #6B5B4B, #A09665
+    );
+}
+.modal-content{
+    background: rgba(0,0,0, .5);
+}
+#modalHeader, h4, h5 {
+    font-family: 'Montserrat', sans-serif;
+    color: white !important;
+}
