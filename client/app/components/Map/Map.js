@@ -25,7 +25,7 @@ class Map extends Component {
 
   state = {
     displayTrailInfo: true,
-    trailInfo:''
+    trailInfo: String
   }
   toggleTrailInfo = (trailInfo) => {
     this.setState({

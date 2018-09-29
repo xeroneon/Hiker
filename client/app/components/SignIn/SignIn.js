@@ -73,7 +73,7 @@ class SignIn extends Component {
             <div>
                 <Nav btnName={this.state.btnName} route={this.state.route} />
                 <form className="main-form">
-                    <input type="text" placeholder="Email" className="main-text-box" value={this.state.email} name="email" onChange={this.handleInputChange} />
+                    <input type="email" placeholder="Email" className="main-text-box" value={this.state.email} name="email" onChange={this.handleInputChange} />
                     <input type="password" placeholder="Password" className="main-text-box" value={this.state.password} name="password" onChange={this.handleInputChange} />
                     {/* <Button btnName="Sign In" onClick={this.handleFormSubmit}/> */}
                     <button type="submit" className="main-btn" onClick={this.handleFormSubmit}>Sign In</button>

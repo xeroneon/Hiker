@@ -13,7 +13,7 @@ const Nav = props => {
       <h2>
         <strong>
           HIKER
-          </strong>
+        </strong>
       </h2>
     </Link>
     {props.token && 
