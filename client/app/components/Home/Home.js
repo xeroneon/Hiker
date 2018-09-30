@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import Example from '../Map/Map';
 import 'whatwg-fetch';
-// import { url } from 'inspector';
 import {
   getFromStorage,
   setInStorage
 } from "../../utils/storage";
-import { Redirect } from 'react-router'
-import Nav from "../Nav/Nav"
-import TrailView from '../Map/TrailView';
+import { Redirect } from 'react-router';
+import Nav from "../Nav/Nav";
 
 
 class Home extends Component {

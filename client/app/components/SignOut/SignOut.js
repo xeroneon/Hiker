@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import 'whatwg-fetch';
-import axios from 'axios';
-// import { url } from 'inspector';
 import {
     getFromStorage,
     setInStorage
 } from "../../utils/storage";
-import { Redirect } from 'react-router'
-import Button from "../Button/Button"
+import { Redirect } from 'react-router';
 
 class SignIn extends Component {
 
