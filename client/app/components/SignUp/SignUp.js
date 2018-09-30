@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import 'whatwg-fetch';
 import axios from 'axios';
-// import { url } from 'inspector';
 import {
     getFromStorage,
     setInStorage
@@ -15,23 +14,11 @@ class SignUp extends Component {
         isLoading: true,
         redirect: false,
         token: getFromStorage("Hiker"),
-        error: ''
-    }
-
-    componentDidMount() {
-        if (!this.state.token) {
-            this.setState({
-                signedIn: true,
-                btnName: "Sign In",
-                route: "signin"
-            })
-        } else {
-            this.setState({
-                signedIn: true,
-                btnName: "Sign Out",
-                route: "signout"
-            })
-        }
+        error: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: ''
     }
 
     handleInputChange = event => {
@@ -105,11 +92,9 @@ class SignUp extends Component {
 
         axios.post("/api/account/signup", newUser)
             .then(res => {
-                console.log("worked")
 
                 axios.post("/api/account/signin", newUser)
                     .then(res => {
-                        console.log(res)
                         setInStorage("Hiker", res.data.token);
                         this.setState({
                             token: res.data.token,

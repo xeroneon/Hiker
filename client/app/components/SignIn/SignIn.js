@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import 'whatwg-fetch';
 import axios from 'axios';
-// import { url } from 'inspector';
 import {
     getFromStorage,
     setInStorage
@@ -16,24 +15,9 @@ class SignIn extends Component {
         isLoading: true,
         redirect: false,
         token: getFromStorage("Hiker"),
-        error: ""
-    }
-
-
-    componentDidMount() {
-        if (!this.state.token) {
-            this.setState({
-                signedIn: true,
-                btnName: "Sign In",
-                route: "signin"
-            })
-        } else {
-            this.setState({
-                signedIn: true,
-                btnName: "Sign Out",
-                route: "signout"
-            })
-        }
+        error: "",
+        email: '',
+        password: ''
     }
 
     handleInputChange = event => {
@@ -55,26 +39,26 @@ class SignIn extends Component {
             email: this.state.email
         }
 
-        if(!this.validateEmail(this.state.email)) {
+        if (!this.validateEmail(this.state.email)) {
 
-            setTimeout(function() {
+            setTimeout(function () {
                 this.setState({
-                  error: ""
+                    error: ""
                 })
-              }.bind(this), 3000)
+            }.bind(this), 3000)
 
-            
+
             return this.setState({
                 error: "Not a valid email"
             })
         }
 
-        if(!this.state.password) {
-            setTimeout(function() {
+        if (!this.state.password) {
+            setTimeout(function () {
                 this.setState({
-                  error: ""
+                    error: ""
                 })
-              }.bind(this), 3000)
+            }.bind(this), 3000)
 
             return this.setState({
                 error: "You need a password"
@@ -99,7 +83,7 @@ class SignIn extends Component {
         }
         return (
             <div>
-                <Nav token={this.state.token}/>
+                <Nav token={this.state.token} />
                 <h3 className="text-danger">{this.state.error}</h3>
                 <form className="main-form">
                     <input type="email" placeholder="Email" className="main-text-box" value={this.state.email} name="email" onChange={this.handleInputChange} />
