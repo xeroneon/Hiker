@@ -66,20 +66,21 @@ class Map extends Component {
       trailsInArea(data)
     })
 
-    function stateOfMarker(data) {
-      this.setState((prevState, props) => ({
-        marker: [...prevState.marker, ...data.data]
-      }));
-    }
+    
+    // function stateOfMarker(data) {
+    //   this.setState((prevState, props) => ({
+    //     marker: [...prevState.marker, ...data.data]
+    //   }));
+    // }
     // finds the latlon of the center of map and runs TrailsAPI.
     function onLocation() {
       state.lat = map.getCenter().lat;
       state.lon = map.getCenter().lng
       console.log(state)
       TrailsAPI.getTrailsInArea(state).then(function (data) {
-        // trailData = data;
-        console.log(data)
-        stateOfMarker(data)
+        // let trailData = data;
+        // console.log(data)
+        // stateOfMarker(data)
         trailsInArea(data)
       })
       // console.log(data)
@@ -93,8 +94,9 @@ class Map extends Component {
     // and adds a clickable function for it. 
     function trailsInArea(data) {
       // map.removeLayer(Trails);
+      
       trailInfo.data = data.data;
-      Trails(trailInfo, toggletrailInfo).addTo(map)
+      Trails(trailInfo, toggletrailInfo)
     }
 
   }
