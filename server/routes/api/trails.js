@@ -15,10 +15,12 @@ module.exports = (app) => {
             .exec((err, user) => {
                 console.log('3')
                 if(err) return console.log(err);
+                console.log(req.body)
                 var trail = req.body                
                 console.log(trail)
                 var newTrail = new Trails({
                     name: trail.name,
+                    completetime: trail.completetime,
                     user: user._id
                 })
                 console.log("new trail", newTrail);
