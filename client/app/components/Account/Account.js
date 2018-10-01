@@ -19,10 +19,6 @@ class Account extends Component {
         loading: true
     };
 
-    componentDidMount() {
-
-    }
-
     componentWillMount() {
         axios.get("api/account/contacts?token=" + this.state.token)
             .then(results => {
@@ -108,7 +104,7 @@ class Account extends Component {
         document.body.style = "";
         return (
             <div className="account-page">
-                <Nav btnName={this.state.btnName} route={this.state.route} onClick={this.handleClick} token={this.state.token}/>
+                <Nav btnName={this.state.btnName} route={this.state.route} onClick={this.handleClick} token={this.state.token} />
 
                 <h1 className="text-white">Account Settings</h1>
 
@@ -160,8 +156,8 @@ class Account extends Component {
                     >
                         Save
                     </button>
-                    <br/>
-                    <br/>
+                    <br />
+                    <br />
 
                     <Link to="/emergency">
                         <Button btnName="Add Contact" />
@@ -188,13 +184,6 @@ class Account extends Component {
                         })
                     }
                 </div>
-
-                {/* <div>{this.state.contacts[0]}</div> */}
-
-                {this.state.loading === false && console.log("contacts", this.state.contacts)}
-
-
-
             </div>
 
         );

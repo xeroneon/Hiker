@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import 'whatwg-fetch';
-// import { url } from 'inspector';
-// import '../../styles/landing.scss';
 import Button from '../Button/Button';
 import {
     getFromStorage,
@@ -15,15 +13,10 @@ import Nav from "../Nav/Nav";
 
 class Landing extends Component {
 
-state = {
-            redirect: false,
-            signedIn: false,
-            token: getFromStorage("Hiker"),
-        }
-
-
-    componentDidMount() {
-
+    state = {
+        redirect: false,
+        signedIn: false,
+        token: getFromStorage("Hiker"),
     }
 
     render() {
@@ -41,7 +34,7 @@ state = {
         }
         return (
             <div>
-                <Nav token={this.state.token}/>
+                <Nav token={this.state.token} />
                 <div className="landingDiv">
                     <h2><strong>Helping hikers stay safe</strong></h2>
                     <Link to="/signup">
