@@ -11,9 +11,7 @@ class Emergency extends Component {
   state = {
     firstName: "",
     lastName: "",
-    phoneNumber: Number,
-    btnName: "Sign Out",
-    route: "signout",
+    phoneNumber: "",
     redirect: false,
     success: "",
     error: "",
@@ -29,13 +27,6 @@ class Emergency extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    console.log(this.state);
-
-    // this.setState({
-    //   firstName: "",
-    //   lastName: "",
-    //   phoneNumber: Number,
-    // })
 
     var body = {
       firstName: this.state.firstName,
@@ -46,7 +37,6 @@ class Emergency extends Component {
 
     axios.post("/add-emergency", body)
       .then(res => {
-        console.log(res)
         if(res.data.success) {
           this.setState({
             success: "Contact Added successfully",
@@ -86,12 +76,6 @@ class Emergency extends Component {
     })
   }
 
-  componentDidMount() {
-    axios.get('/all-emergency-contacts').then(res => {
-      console.log(res)
-    })
-  }
-
   render() {
     const { firstName, lastName, phoneNumber } = this.state;
     if (this.state.redirect) {
@@ -104,7 +88,7 @@ class Emergency extends Component {
 
     return (
       <div>
-        <Nav btnName={this.state.btnName} route={this.state.route} onClick={this.handleClick} token={this.state.token}/>
+        <Nav onClick={this.handleClick} token={this.state.token}/>
 
         <h2 className="text-white title">Emergency Contacts</h2>
         <h3 className="text-danger">{this.state.error}</h3>
@@ -113,7 +97,6 @@ class Emergency extends Component {
 
 
         <form className="main-form">
-          {/* First name: */}
           <br />
           <input
             onChange={e => this.onChange("firstName", e.target.value)}
