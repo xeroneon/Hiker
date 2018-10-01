@@ -20,6 +20,7 @@ module.exports = (app) => {
                 console.log(trail)
                 var newTrail = new Trails({
                     name: trail.name,
+                    begintime:trail.begintime,
                     completetime: trail.completetime,
                     user: user._id
                 })

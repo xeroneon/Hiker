@@ -16,6 +16,7 @@ class Example extends React.Component {
       this.setState({
         startDate: date
       });
+      console.log(this.state)
     }
    
     render() {
