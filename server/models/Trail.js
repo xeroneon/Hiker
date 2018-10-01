@@ -7,6 +7,10 @@ const TrailSchema = new mongoose.Schema({
     type: String,
     default: '',
   },
+  begintime: {
+    type: String,
+    default: '',
+  },
   completetime: {
     type: String,
     default: '',

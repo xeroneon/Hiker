@@ -1,5 +1,6 @@
 import React from 'react';
-// import DatePicker from 'react-datepicker';
+import DatePicker from 'react-datepicker';
+
 import moment from 'moment';
 import TimePicker from 'react-bootstrap-time-picker';
 import CardBtn from '../Map/CardBtn';
@@ -9,13 +10,18 @@ import CardBtn from '../Map/CardBtn';
 class Parent extends React.Component {
 
     constructor(props) {
-        console.log(props.info)
+        // console.log(props.info)
+        let currentTime = moment().format('HH:MM')
         super();
         // CardBtn(props)
         this.handleTimeChange = this.handleTimeChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
 
-        this.state = { props,time: 0 };
-        console.log(this.state)
+
+        this.state = {
+            props, startDate: moment(), endDate:moment()
+        };
+        // console.log(this.state)
         // CardBtn({ completeTime: this.state.time })
     }
 
@@ -23,18 +29,23 @@ class Parent extends React.Component {
         // console.log(time);     // <- prints "3600" if "01:00" is picked
         this.setState({ time })
         // CardBtn(this.state)
+        console.log(this.state)
+    }
+    handleChange(date) {
+        this.setState({
+            endDate: date
+        });
     }
     // dispatching an action based on state change
     // componentWillUpdate(props, nextState) {
     //     if (nextState.open == true && this.state.open == false) {
     //     }
-    //     CardBtn(this.state)
+    //     // CardBtn(this.state)
     // }
 
 
     render() {
-        let currentTime = moment().format('HH:MM')
-        console.log(currentTime)
+        // console.log(currentTime)
         let myTime;
         if (moment().minute() > 30) {
             myTime = moment().format('HH:30');
@@ -47,7 +58,17 @@ class Parent extends React.Component {
 
         return (
             <div className='timer'>
-                <TimePicker className='w-75 main-btn trail-btn' start={myTime} end="24:00" step={30} onChange={this.handleTimeChange} value={this.state.time} />
+                <DatePicker
+                    selected={this.state.endDate}
+                    onChange={this.handleChange}
+                    showTimeSelect
+                    timeFormat="HH:mm"
+                    timeIntervals={15}
+                    dateFormat="LLL"
+                    timeCaption="time"
+                />
+                {/* <DatePicker className='w-100' selected={this.state.startDate} onChange={this.handleChange} />; */}
+                {/* <TimePicker className='w-75 main-btn trail-btn' start={myTime} end="24:00" step={30} onChange={this.handleTimeChange} value={this.state.time} /> */}
                 <button className='w-100 btn-primary' toggle='true' onClick={() => CardBtn(this.state)}>Check in</button>
                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>

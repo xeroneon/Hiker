@@ -9,7 +9,7 @@ import {
 
 const CardBtn = (props, state) => {
     console.log(props)
-    var body = { name: props.props.info.trailName, completetime: props.time, token: getFromStorage("Hiker") }
+    var body = { name: props.props.info.trailName, begintime:props.startDate, completetime: props.endDate, token: getFromStorage("Hiker") }
    
     console.log(body)
     // console.log(timer)
