@@ -1,5 +1,10 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
+import {
+    getFromStorage,
+    setInStorage
+} from "../../utils/storage";
+import axios from "axios";
 
 import moment from 'moment';
 import TimePicker from 'react-bootstrap-time-picker';
@@ -19,7 +24,10 @@ class Parent extends React.Component {
 
 
         this.state = {
-            props, startDate: moment(), endDate:moment()
+            props,
+            startDate: moment(),
+            endDate: moment(),
+            token: getFromStorage("Hiker")
         };
         // console.log(this.state)
         // CardBtn({ completeTime: this.state.time })
@@ -31,17 +39,41 @@ class Parent extends React.Component {
         // CardBtn(this.state)
         console.log(this.state)
     }
+
     handleChange(date) {
         this.setState({
             endDate: date
         });
+
+        console.log(date.format())
     }
-    // dispatching an action based on state change
-    // componentWillUpdate(props, nextState) {
-    //     if (nextState.open == true && this.state.open == false) {
-    //     }
-    //     // CardBtn(this.state)
-    // }
+
+    handleSubmit = () => {
+        let body = {
+            token: this.state.token,
+            endDate: this.state.endDate.format(),
+            name: this.state.props.info.trailName,
+            begintime: this.state.startDate,
+            completetime: this.state.endDate,
+        }
+        axios.post("/api/checkin", body)
+            .then(res => {
+                console.log(res);
+            })
+
+        console.log(body)
+        // console.log(timer)
+        if (body.completetime == '' || body.name == '') {
+            console.log("enter additional info")
+        }
+        else {
+
+            axios.post("/add-trail", body)
+                .then(res => { console.log(res) })
+                .catch(err => { console.log(err) })
+
+        }
+    }
 
 
     render() {
@@ -63,13 +95,13 @@ class Parent extends React.Component {
                     onChange={this.handleChange}
                     showTimeSelect
                     timeFormat="HH:mm"
-                    timeIntervals={15}
+                    timeIntervals={1}
                     dateFormat="LLL"
                     timeCaption="time"
                 />
                 {/* <DatePicker className='w-100' selected={this.state.startDate} onChange={this.handleChange} />; */}
                 {/* <TimePicker className='w-75 main-btn trail-btn' start={myTime} end="24:00" step={30} onChange={this.handleTimeChange} value={this.state.time} /> */}
-                <button className='w-100 btn-primary' toggle='true' onClick={() => CardBtn(this.state)}>Check in</button>
+                <button className='w-100 btn-primary' toggle='true' onClick={this.handleSubmit}>Check in</button>
                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         )
