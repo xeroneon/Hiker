@@ -14,74 +14,46 @@ moment().format();
 
 module.exports = (app) => {
 
-    app.post('/send-text-message', function (req, res) {
-        console.log(req.body)
-        client.messages.create({
-            body: req.body.body,
-            to: req.body.to,  // Text this number
-            from: req.body.from // From a valid Twilio number
-        })
-            .then((message) => {
-                console.log(message.sid)
-
-                res.send(message.sid)
-            });
-        // res.send(req.body)
-    })
-
     app.post("/api/checkin", (req, res) => {
-
-
         //find usersession
         UserSession.findOne({ _id: req.body.token })
             .exec((err, session) => {
                 if (err) return console.log(err);
                 //find user from sessions user id
                 User.findOne({ _id: session.userId })
-                    .populate("contacts trails")
                     .exec((err, user) => {
                         //set the user checked in to true and save to database
                         user.checkedIn = true;
-                        // console.log(user.contacts);
-                        console.log(user.trails)
                         user.save();
-                            //create date using momentJS and format for use
-                            var date = req.body.endDate
-                            console.log(date)
-                            //schedule job using the date
-                            schedule.scheduleJob(date, function (userId) {
+                        //create date using momentJS and format for use
+                        const date = req.body.endDate
+                        //schedule job using the date
+                        schedule.scheduleJob(date, function (userId) {
 
-                                User.findOne({ _id: userId})
-                                    .populate("contacts trails")
-                                    .exec((err, user) => {
-                                            console.log(user.trails)
-                                        user.contacts.map(contacts => {
-                                            console.log(contacts);
-                                            let trailIndex = user.trails.length - 1;
-                                            client.messages.create({
-                                                body: `${user.firstName} might be in trouble, They are at ${user.trails[trailIndex].name}, give them a call to see if they are okay`,
-                                                to: contacts.phoneNumber,  // Text this number
-                                                from: "+18508528647" // From a valid Twilio number
-                                            })
-                                                .then((message) => {
-                                                    console.log(message.sid)
-                                    
-                                                    res.send(message.sid)
-                                                });
-                                            
+                            User.findOne({ _id: userId })
+                                .populate("contacts trails")
+                                .exec((err, user) => {
+                                    user.contacts.map(contacts => {
+                                        const trailIndex = user.trails.length - 1;
+                                        client.messages.create({
+                                            body: `${user.firstName} might be in trouble, They are at ${user.trails[trailIndex].name}, give them a call to see if they are okay`,
+                                            to: contacts.phoneNumber,  // Text this number
+                                            from: "+18508528647" // From a valid Twilio number
                                         })
+                                            .then((message) => {
+                                                console.log(message.sid)
 
+                                                res.send(message.sid)
+                                            });
                                     })
-                                
-                            }.bind(null, user._id));
+                                })
+                        }.bind(null, user._id));
                         res.end();
                     })
             })
     })
 
     app.post("/api/checkout", (req, res) => {
-
-
         //find usersession
         UserSession.findOne({ _id: req.body.token })
             .exec((err, session) => {
@@ -97,15 +69,5 @@ module.exports = (app) => {
                     })
             })
     })
-
-    app.post("/api/test", (req, res) => {
-
-        let endDate = req.body.endDate.format();
-        res.json({
-            endDate
-        })
-    })
-
-
 }
 
