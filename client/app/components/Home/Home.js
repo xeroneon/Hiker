@@ -1,41 +1,25 @@
 import React, { Component } from 'react';
 import Example from '../Map/Map';
 import 'whatwg-fetch';
-// import { url } from 'inspector';
 import {
   getFromStorage,
   setInStorage
 } from "../../utils/storage";
-import { Redirect } from 'react-router'
+import { Redirect } from 'react-router';
+import Nav from "../Nav/Nav";
 
 
 class Home extends Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      token: '',
-
-
-    }
+  state = {
+    token: getFromStorage("Hiker"),
   }
 
-  // componentDidMount() {
-  //   const token = getFromStorage("Hiker");
-
-  //   if (token) {
-  //     fetch('/api/account/verify?token=' + token)
-  //       .then(res => res.json())
-  //       .then(json => {
-  //         if (json.success) {
-  //           this.setState({
-  //             token
-  //           })
-  //         }
-  //       })
-  //   }
-  // }
+  handleClick() {
+    if (this.state.token) {
+      localStorage.removeItem("Hiker");
+    }
+  }
 
   render() {
 
@@ -46,7 +30,13 @@ class Home extends Component {
     }
     document.body.style = "";
     return (
-      <div><Example /></div>
+      <div>
+        <Nav onClick={this.handleClick} token={this.state.token}/>
+
+        <Example />
+
+      </div>
+
     );
   }
 
