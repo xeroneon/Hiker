@@ -38,23 +38,28 @@ module.exports = (app) => {
                 if (err) return console.log(err);
                 //find user from sessions user id
                 User.findOne({ _id: session.userId })
-                    .populate("contacts")
+                    .populate("contacts trails")
                     .exec((err, user) => {
                         //set the user checked in to true and save to database
                         user.checkedIn = true;
-                        console.log(user.contacts);
+                        // console.log(user.contacts);
+                        console.log(user.trails)
                         user.save();
                             //create date using momentJS and format for use
-                            var date = moment().add(req.body.hours, 's').format();
+                            var date = req.body.endDate
+                            console.log(date)
                             //schedule job using the date
                             schedule.scheduleJob(date, function (userId) {
 
                                 User.findOne({ _id: userId})
+                                    .populate("contacts trails")
                                     .exec((err, user) => {
+                                            console.log(user.trails)
                                         user.contacts.map(contacts => {
-                                            // console.log(data)
+                                            console.log(contacts);
+                                            let trailIndex = user.trails.length - 1;
                                             client.messages.create({
-                                                body: `${user.firstName} might be in trouble, They are at {put trail name here}, give them a call to see if they are okay`,
+                                                body: `${user.firstName} might be in trouble, They are at ${user.trails[trailIndex].name}, give them a call to see if they are okay`,
                                                 to: contacts.phoneNumber,  // Text this number
                                                 from: "+18508528647" // From a valid Twilio number
                                             })
@@ -91,6 +96,14 @@ module.exports = (app) => {
                         res.end();
                     })
             })
+    })
+
+    app.post("/api/test", (req, res) => {
+
+        let endDate = req.body.endDate.format();
+        res.json({
+            endDate
+        })
     })
 
 
