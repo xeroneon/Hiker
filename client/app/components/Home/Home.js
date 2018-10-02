@@ -21,6 +21,12 @@ class Home extends Component {
     }
   }
 
+  componentDidMount (){
+    if (this.state.token) {
+     console.log(this.state.token)
+    }
+  }
+
   render() {
 
     const token = getFromStorage("Hiker");

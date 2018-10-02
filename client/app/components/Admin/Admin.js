@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from 'axios';
+import Example from '../Map/Clustermap';
 import {
   getFromStorage,
   setInStorage
@@ -7,5 +7,9 @@ import {
 import { Redirect } from 'react-router';
 import Nav from "../Nav/Nav";
 
-{/* <Example /> */}
+const Admin = () => {
+  return( <Example />
+  ) 
+}
 
+export default Admin

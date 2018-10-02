@@ -68,6 +68,7 @@ module.exports = (app) => {
             newUser.firstName = firstName;
             newUser.lastName = lastName;
             newUser.password = newUser.generateHash(password);
+            newUser.admin = false
             newUser.save((err, user) => {
                 if (err) {
                     return res.send({
@@ -153,7 +154,8 @@ module.exports = (app) => {
                 return res.send({
                     success: true,
                     message: 'Valid sign in',
-                    token: doc._id
+                    token: doc._id,
+                    doc: doc, 
                 })
             });
         })

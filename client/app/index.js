@@ -39,7 +39,7 @@ render((
         <Route exact path="/account" component={Account}/>
         <Route exact path="/home" component={Home}/>
         <Route exact path="/emergency" component={Emergency}/>
-        <Route exact path="/adm" component={Adm}/>
+        <Route exact path="/admin" component={Adm}/>
          <Route component={NotFound}/>
       </Switch>
     </App>
