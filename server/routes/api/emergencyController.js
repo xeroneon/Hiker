@@ -88,35 +88,4 @@ module.exports = (app) => {
             })
         })
     })
-
-    app.post("/api/test", (req, res) => {
-
-        // console.log(req.body.token);
-        // res.end();
-        UserSession.findOne({_id: req.body.token})
-            .exec((err, session) => {
-                if (err) return console.log(err);
-
-                User.findOne({_id: session.userId})
-                    .exec((err, user) => {
-                        console.log(user);
-
-                        var newContact = new Emergency({
-                            firstName: req.body.firstName,
-                            lastName: req.body.lastName,
-                            phoneNumber: req.body.phoneNumber,
-                            user: user._id
-                        })
-
-                        newContact.save(err => {
-                            if (err) return console.log(err)
-                            return res.send({
-                                success: true,
-                                message: "Good"
-                            });
-                        })
-
-                    })
-            })
-    })
 }
