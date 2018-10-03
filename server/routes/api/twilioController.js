@@ -61,11 +61,17 @@ module.exports = (app) => {
                 //find user from sessions user id
                 User.findOne({ _id: session.userId })
                     .exec((err, user) => {
+                        if (err) return res.json({
+                            success: false,
+                            error: err
+                        })
                         //set the user checked in to true and save to database
                         user.checkedIn = false;
                         user.save();
 
-                        res.end();
+                        res.json({
+                            success: true,
+                        });
                     })
             })
     })
