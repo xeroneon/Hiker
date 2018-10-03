@@ -18,6 +18,8 @@ class Map extends Component {
   //   this.stateOfMarker = this.stateOfMarker.bind(this)
   // }
   invalidateSize(map) {
+    // map = L.map("map").setView(state,14);
+
     console.log(this.trail)
     if (map) {
       setTimeout(() => { map.invalidateSize(true) }, 100);
@@ -37,13 +39,13 @@ class Map extends Component {
     console.log(this.state)
   }
   componentDidMount() {
-    let map = L.map("map").fitWorld();
     let toggletrailInfo = this.toggleTrailInfo;
-
+    
     let state = {
       lat: 33.5,
       lon: -112
     };
+    let map = L.map("map").setView(state,14);
     let trailInfo = {
       map: map,
       data: []
