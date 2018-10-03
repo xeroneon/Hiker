@@ -1,5 +1,6 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
+import "./react-datepicker.scss";
 import {
     getFromStorage,
     setInStorage
