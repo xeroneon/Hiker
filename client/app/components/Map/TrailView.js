@@ -1,21 +1,13 @@
 import React from 'react';
-import CardBtn from './CardBtn';
-// import Popup from './Popup';
-import { Button, Modal } from 'react-bootstrap';
+import Timepicker from '../Scheduler/Timepicker';
 
-// const toggle = false;
 
-// const btnToggle = (toggle) => {
-//         console.log(toggle)
-//         // $('.switch').click(function () {
-//         toggle = true;
-//         return toggle
-//         console.log('toggle' + toggle)
-// }
+
 
 
 const TrailView = props => {
-        if(props.trailName) {
+
+        if (props.trailName) {
 
                 return (
                         <div className='container'>
@@ -29,17 +21,21 @@ const TrailView = props => {
                                                         </div>
                                                         <div className="col-12 modal-body">
                                                                 <div className='row h-50 m-auto'>
-                                                                        <img className='h-100' src={props.trailImage}></img>
+                                                                        <img className='h-100 m-auto' src={props.trailImage}></img>
                                                                 </div>
-                                                                <div className='row h-50 m-auto'>
+                                                                <div className='row h-25 m-auto'>
                                                                         <h4>Trail length: {props.trailLength}</h4>
                                                                         <h4>Summary: {props.trailSummary}</h4>
                                                                 </div>
+                                                                <div className='row h-25 m-auto'>
+                                                                        {/* <Datepicker className='w-100' info={props} /> */}
+                                                                        <Timepicker info={props} />
+                                                                </div>
                                                         </div>
-        
+
                                                         <div className="modal-footer">
-                                                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                <button className='w-100 btn-primary' onClick={() => CardBtn(props)}>Check in</button>                                                </div>
+
+                                                        </div>
                                                 </div>
                                         </div>
                                 </div>
@@ -47,21 +43,6 @@ const TrailView = props => {
                                         {props.trailName}
                                 </button>
                         </div>
-                        // <div className="form-group">
-                        //         <Button  bsStyle="primary" bsSize="large" >
-                        //                 {props.trailName}
-                        //         </Button>
-                        //         <Modal show={toggle} >
-                        //                 <Modal.Header closeButton>
-                        //                         <Modal.Title>{props.trailName}</Modal.Title>
-                        //                 </Modal.Header>
-                        //                 <Modal.Body>
-                        //                         <img className='w-100 h-50' src={props.trailImage}></img>
-                        //                         <h4>{props.trailLength}</h4>
-                        //                         <p>{props.trailSummary}</p>
-                        //                 </Modal.Body>
-                        //         </Modal>
-                        // </div>
                 )
         }
 };

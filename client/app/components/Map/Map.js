@@ -14,7 +14,9 @@ import Popup from './Popup';
 
 
 class Map extends Component {
-
+  // constructor() {
+  //   this.stateOfMarker = this.stateOfMarker.bind(this)
+  // }
   invalidateSize(map) {
     console.log(this.trail)
     if (map) {
@@ -25,7 +27,8 @@ class Map extends Component {
 
   state = {
     displayTrailInfo: true,
-    trailInfo: String
+    trailInfo: String,
+    markers: []
   }
   toggleTrailInfo = (trailInfo) => {
     this.setState({
@@ -59,16 +62,25 @@ class Map extends Component {
     // trailsInArea with the data.
     TrailsAPI.getTrailsInArea(state).then(function (data) {
       // trailData = data;
+      // console.log(data)
       trailsInArea(data)
     })
 
+    
+    // function stateOfMarker(data) {
+    //   this.setState((prevState, props) => ({
+    //     marker: [...prevState.marker, ...data.data]
+    //   }));
+    // }
     // finds the latlon of the center of map and runs TrailsAPI.
     function onLocation() {
       state.lat = map.getCenter().lat;
       state.lon = map.getCenter().lng
       console.log(state)
       TrailsAPI.getTrailsInArea(state).then(function (data) {
-        // trailData = data;
+        // let trailData = data;
+        // console.log(data)
+        // stateOfMarker(data)
         trailsInArea(data)
       })
       // console.log(data)
@@ -78,13 +90,13 @@ class Map extends Component {
     map.on('dragend', function (e) {
       onLocation(e)
     })
-
     // creates markers and popups for all the points. 
     // and adds a clickable function for it. 
     function trailsInArea(data) {
       // map.removeLayer(Trails);
+      
       trailInfo.data = data.data;
-      Trails(trailInfo, toggletrailInfo).addTo(map)
+      Trails(trailInfo, toggletrailInfo)
     }
 
   }
@@ -102,7 +114,7 @@ class Map extends Component {
           <div id="map">
           </div>
           <div className="newTrail">
-          {shouldDisplayTrailView}
+            {shouldDisplayTrailView}
           </div>
         </div>
       </div>

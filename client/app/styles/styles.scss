@@ -7,8 +7,12 @@
 $navRGBa: rgb(0,0,0);
 $alpha: .3;
 $navAlpha: rgba($navRGBa, $alpha);
+html {
+    min-height: 100vh !important;
+}
+
 body {
-    min-height: 100vh;
+    min-height: 100vh !important;
     // width: 100vw;
     background-image:
         linear-gradient(
@@ -19,10 +23,11 @@ body {
     font-family: 'Montserrat', sans-serif;
     padding-bottom: 0;
     font-size: 14px;
+    overflow: auto;
 }
 
 main {
-    min-height: 89vh;
+    min-height: 92vh;
 }
 
 .contacts {
@@ -30,7 +35,8 @@ main {
     border-radius: 10px;
     width: 80%;
     margin: auto;
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     padding:10px;
     
     h4 {
@@ -60,9 +66,11 @@ main {
         margin-left: 20px;
     }
 }
-// #app {
-//     height: 100vh;
-// }
+#app {
+    min-height: 90vh;
+    margin: 0 !important;
+    padding: 0 !important;
+}
 .main-form {
     width: 100%;
     text-align: center;
@@ -70,13 +78,13 @@ main {
 }
 
 .main-text-box {
-    width: 80%;
-    margin: 10px 10px;
-    background: rgba(0,0,0, .5);
-    border: none;
-    color: white;
-    border-radius: 20px;
-    padding-left: 10px;
+    width: 80% !important;
+    margin: 10px 10px !important;
+    background: rgba(0,0,0, .5) !important;
+    border: none !important;
+    color: white !important;
+    border-radius: 20px !important;
+    padding-left: 10px !important;
 }
 
 .landingDiv {
@@ -123,9 +131,9 @@ footer {
     height: 8vh;
     // position: relative;
     // bottom: 0vh;
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
     color:white;
-    margin-top: 20px;
     
     p {
         text-align: center;
@@ -223,7 +231,7 @@ footer {
   }
 
 img {
-    width: 75%;
+    width: 100%;
     display:block;
     background-size: cover;
     background-repeat: no-repeat;
@@ -259,3 +267,12 @@ img {
     font-family: 'Montserrat', sans-serif;
     color: white !important;
 }
+
+.react-datepicker__time-list{
+    // margin-left: 0;
+    padding: 0
+}
+
+
+
+

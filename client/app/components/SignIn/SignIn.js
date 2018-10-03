@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import 'whatwg-fetch';
 import axios from 'axios';
-// import { url } from 'inspector';
 import {
     getFromStorage,
     setInStorage
@@ -16,27 +15,9 @@ class SignIn extends Component {
         isLoading: true,
         redirect: false,
         token: getFromStorage("Hiker"),
-        signUpError: '',
-        signInError: '',
-        btnName: "Sign In",
-        route: "signin"
-    }
-
-
-    componentDidMount() {
-        if (!this.state.token) {
-            this.setState({
-                signedIn: true,
-                btnName: "Sign In",
-                route: "signin"
-            })
-        } else {
-            this.setState({
-                signedIn: true,
-                btnName: "Sign Out",
-                route: "signout"
-            })
-        }
+        error: "",
+        email: '',
+        password: ''
     }
 
     handleInputChange = event => {
@@ -46,11 +27,42 @@ class SignIn extends Component {
         });
     };
 
+    validateEmail = email => {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+
     handleFormSubmit = event => {
         event.preventDefault();
         const newUser = {
             password: this.state.password,
             email: this.state.email
+        }
+
+        if (!this.validateEmail(this.state.email)) {
+
+            setTimeout(function () {
+                this.setState({
+                    error: ""
+                })
+            }.bind(this), 3000)
+
+
+            return this.setState({
+                error: "Not a valid email"
+            })
+        }
+
+        if (!this.state.password) {
+            setTimeout(function () {
+                this.setState({
+                    error: ""
+                })
+            }.bind(this), 3000)
+
+            return this.setState({
+                error: "You need a password"
+            })
         }
 
         axios.post("/api/account/signin", newUser)
@@ -71,7 +83,8 @@ class SignIn extends Component {
         }
         return (
             <div>
-                <Nav btnName={this.state.btnName} route={this.state.route} />
+                <Nav token={this.state.token} />
+                <h3 className="text-danger">{this.state.error}</h3>
                 <form className="main-form">
                     <input type="email" placeholder="Email" className="main-text-box" value={this.state.email} name="email" onChange={this.handleInputChange} />
                     <input type="password" placeholder="Password" className="main-text-box" value={this.state.password} name="password" onChange={this.handleInputChange} />
