@@ -1,8 +1,5 @@
 import React from 'react';
-import CardBtn from './CardBtn';
 import Timepicker from '../Scheduler/Timepicker';
-import Datepicker from '../Scheduler/Datepicker';
-// import DatePicker from 'react-datepicker';
 
 
 
@@ -28,7 +25,7 @@ const TrailView = props => {
                                                                 </div>
                                                                 <div className='row h-25 m-auto'>
                                                                         <h4>Trail length: {props.trailLength}</h4>
-                                                                        <h4>Summary: {props.trailSummary}</h4>  
+                                                                        <h4>Summary: {props.trailSummary}</h4>
                                                                 </div>
                                                                 <div className='row h-25 m-auto'>
                                                                         {/* <Datepicker className='w-100' info={props} /> */}

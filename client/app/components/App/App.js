@@ -8,7 +8,7 @@ document.body.style = "";
 const App = ({ children }) => (
   <>
 
-    <main className='main h-100'>
+    <main>
       {children}
     </main>
 

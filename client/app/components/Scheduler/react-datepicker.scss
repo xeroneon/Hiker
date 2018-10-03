@@ -1,10 +1,14 @@
 .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle, .react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle, .react-datepicker__year-read-view--down-arrow,
 .react-datepicker__month-read-view--down-arrow,
 .react-datepicker__month-year-read-view--down-arrow {
-  margin-left: -8px;
+  // margin-left: -8px;
   position: absolute;
 }
 
+.react-datepicker-popper {
+  width: 100%;
+  transform: translate3d(0px, 25px, 0px) !important;
+}
 input {
 // margin: auto;
   background: none !important;

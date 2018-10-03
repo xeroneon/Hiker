@@ -23,6 +23,7 @@ import SignIn from './components/SignIn/SignIn';
 import SignOut from './components/SignOut/SignOut';
 import Emergency from './components/Emergency/Emergency';
 import Account from './components/Account/Account';
+import Checkout from './components/Checkout/Checkout';
 
 import './styles/styles.scss';
 
@@ -38,6 +39,7 @@ render((
         <Route exact path="/account" component={Account}/>
         <Route exact path="/home" component={Home}/>
         <Route exact path="/emergency" component={Emergency}/>
+        <Route exact path="/checkout" component={Checkout}/>
          <Route component={NotFound}/>
       </Switch>
     </App>
