@@ -1,6 +1,6 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
-
+import "./react-datepicker.scss";
 import moment from 'moment';
 import TimePicker from 'react-bootstrap-time-picker';
 import CardBtn from '../Map/CardBtn';
@@ -57,7 +57,7 @@ class Parent extends React.Component {
         }
 
         return (
-            <div className='timer'>
+            <div className='timer w-100 position-relative'>
                 <DatePicker
                     selected={this.state.endDate}
                     onChange={this.handleChange}
