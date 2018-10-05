@@ -1,11 +1,14 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
+import "./react-datepicker.scss";
 import {
     getFromStorage,
     setInStorage
 } from "../../utils/storage";
 import axios from "axios";
 import moment from 'moment';
+import { Redirect } from 'react-router';
+
 
 
 class Parent extends React.Component {
@@ -54,13 +57,18 @@ class Parent extends React.Component {
                 .catch(err => { console.log(err) })
 
         }
+        this.setState({
+            redirect: true
+        })
     }
 
 
     render() {
-
+        if (this.state.redirect) {
+            return <Redirect to='/checkout' />
+        }
         return (
-            <div className='timer'>
+            <div className='timer w-100 position-relative'>
                 <DatePicker
                     selected={this.state.endDate}
                     onChange={this.handleChange}
@@ -70,7 +78,7 @@ class Parent extends React.Component {
                     dateFormat="LLL"
                     timeCaption="time"
                 />
-                <button className='w-100 btn-primary' toggle='true' onClick={this.handleSubmit}>Check in</button>
+                <button className='w-100 btn-primary' toggle='true' data-toggle="modal" data-dismiss="modal" onClick={this.handleSubmit}>Check in</button>
                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         )
