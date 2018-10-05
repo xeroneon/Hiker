@@ -1,25 +1,54 @@
 import React, { Component } from "react";
-import Example from '../Map/Clustermap';
+import Map from '../Map/Clustermap';
 import {
   getFromStorage,
   setInStorage
 } from "../../utils/storage";
 import { Redirect } from 'react-router';
 import Nav from "../Nav/Nav";
+import axios from "axios";
 
-const Admin = () => {
+class Admin extends Component {
 
-  const userAdmin = getFromStorage("userAdmin")
-  console.log(userAdmin)
-  if (userAdmin) {
-
-
-    return (<Example />)
+  state = {
+    token: getFromStorage("Hiker")
   }
 
-  else {
-    return ("You do not have permission to access this page")
+  // const userAdmin = getFromStorage("userAdmin")
+  // console.log(userAdmin)
+
+  componentWillMount = () => {
+    axios.get(`/api/get-user?token=${this.state.token}`)
+      .then(res => {
+        if(res.data.success && res.data.user.role === 99) {
+          this.setState({
+            auth: true
+          })
+        }
+      })
   }
+
+  render() {
+
+    if (this.state.auth) {
+  
+  
+      return (
+
+        <div className="admin">
+          <Nav token={this.state.token} admin={this.state.auth}/>
+          <Map />
+        
+        </div>
+      
+      )
+    }
+  
+    else {
+      return ("You do not have permission to access this page")
+    }
+  }
+
 
 
 }
