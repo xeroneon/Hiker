@@ -24,6 +24,7 @@ import SignOut from './components/SignOut/SignOut';
 import Emergency from './components/Emergency/Emergency';
 import Account from './components/Account/Account';
 import Checkout from './components/Checkout/Checkout';
+import Admin from './components/Admin/Admin';
 
 import './styles/styles.scss';
 
@@ -40,6 +41,7 @@ render((
         <Route exact path="/home" component={Home}/>
         <Route exact path="/emergency" component={Emergency}/>
         <Route exact path="/checkout" component={Checkout}/>
+        <Route exact path="/Admin" component={Admin}/>
          <Route component={NotFound}/>
       </Switch>
     </App>
