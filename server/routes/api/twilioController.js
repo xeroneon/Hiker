@@ -35,16 +35,19 @@ module.exports = (app) => {
                                 .exec((err, user) => {
                                     user.contacts.map(contacts => {
                                         const trailIndex = user.trails.length - 1;
-                                        client.messages.create({
-                                            body: `${user.firstName} might be in trouble, They are at ${user.trails[trailIndex].name}, give them a call to see if they are okay`,
-                                            to: contacts.phoneNumber,  // Text this number
-                                            from: "+18508528647" // From a valid Twilio number
-                                        })
-                                            .then((message) => {
-                                                console.log(message.sid)
+                                        if (user.checkedIn) {
+                                            client.messages.create({
+                                                body: `EMERGENCY: ${user.firstName} might be in trouble, They are at ${user.trails[trailIndex].name}, They were scheduled to finish at ${user.trails[trailIndex].completetime}, give them a call to see if they are okay`,
+                                                to: contacts.phoneNumber,  // Text this number
+                                                from: "+18508528647" // From a valid Twilio number
+                                            })
+                                                .then((message) => {
+                                                    console.log(message.sid)
 
-                                                res.send(message.sid)
-                                            });
+                                                    res.send(message.sid)
+                                                });
+
+                                        }
                                     })
                                 })
                         }.bind(null, user._id));
