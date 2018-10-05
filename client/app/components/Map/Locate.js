@@ -43,6 +43,8 @@ const Locate = map => {
         console.log(e.latlng)
         lat = e.latlng.lat;
         lng = e.latlng.lng
+        map.locate({ setView: true});
+        map.setZoom(10);
 
     }
     map.on('locationfound', onLocationFound);
