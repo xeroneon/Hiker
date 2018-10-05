@@ -24,6 +24,7 @@ import SignOut from './components/SignOut/SignOut';
 import Emergency from './components/Emergency/Emergency';
 import Account from './components/Account/Account';
 import Checkout from './components/Checkout/Checkout';
+import Admin from './components/Admin/Admin';
 
 import './styles/styles.scss';
 

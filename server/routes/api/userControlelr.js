@@ -68,6 +68,7 @@ module.exports = (app) => {
             newUser.firstName = firstName;
             newUser.lastName = lastName;
             newUser.password = newUser.generateHash(password);
+            newUser.admin = false
             newUser.save((err, user) => {
                 if (err) {
                     return res.send({
@@ -153,10 +154,34 @@ module.exports = (app) => {
                 return res.send({
                     success: true,
                     message: 'Valid sign in',
-                    token: doc._id
+                    token: doc._id,
+                    admin: false,
                 })
-            });
+
+                const userAdmin = new UserAdmin();
+                if (!userAdm) {
+                    return res.send ({
+                        success: false,
+                        message: "You do not have permission to access this site"
+                    });
+
+                    return res.send({
+                        success: true,
+                        message: 'Admin log in successful',
+                        token: doc._id,
+                        admin: true,
+                })
+
+            }
+            })
         })
+
+        
+
+
+
+
+
 
     });
 
