@@ -260,4 +260,32 @@ module.exports = (app) => {
                     })
             })
     });
+
+    app.post("/api/checkstatus", (req, res) => {
+        //find usersession
+        UserSession.findOne({ _id: req.body.token })
+            .exec((err, session) => {
+                if (err) return console.log(err);
+                //find user from sessions user id
+                User.findOne({ _id: session.userId })
+                    .exec((err, user) => {
+                        if (err) return res.json({
+                            success: false,
+                            error: err
+                        })
+
+                        if (user.checkedIn) {
+                            return res.json({
+                                checkedIn: true
+                            })
+                        }
+
+                        if(!user.checkedIn) {
+                            return res.json({
+                                checkedIn: false
+                            })
+                        }
+                    })
+            })
+    })
 };

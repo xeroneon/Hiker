@@ -7,6 +7,8 @@ import {
 } from "../../utils/storage";
 import { Redirect } from 'react-router';
 import Nav from "../Nav/Nav";
+import axios from 'axios';
+
 
 
 class Home extends Component {
@@ -21,10 +23,15 @@ class Home extends Component {
     }
   }
 
-  componentDidMount (){
-    if (this.state.token) {
-     console.log(this.state.token)
-    }
+  componentDidMount() {
+    let body = {token: this.state.token};
+    axios.post("/api/checkstatus", body)
+    .then(res => {
+        if (res.data.checkedIn) {
+            this.setState({ checkedIn: true })
+        }
+        console.log(res);
+    })
   }
 
   render() {
@@ -33,6 +40,10 @@ class Home extends Component {
 
     if (!token) {
       return <Redirect to='/' />;
+    }
+
+    if(this.state.checkIn) {
+      return <Redirect to='/checkout' />
     }
     document.body.style = "";
     return (

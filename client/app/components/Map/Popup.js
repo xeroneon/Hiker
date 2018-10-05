@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 
+=======
+// import CardBtn from './CardBtn';
+>>>>>>> 54162d35e6429ab93701fca1d7e33a735a2ee77c
 // import Popup from './Popup';
 import { Button, Modal } from 'react-bootstrap';
 
