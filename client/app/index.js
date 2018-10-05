@@ -34,14 +34,13 @@ render((
     <App>
       <Switch>
         <Route exact path="/" component={Landing}/>
-        <Route exact path="/signup" component={SignUp}/>
-        <Route exact path="/signin" component={SignIn}/>
-        <Route exact path="/signout" component={SignOut}/>
-        <Route exact path="/account" component={Account}/>
-        <Route exact path="/home" component={Home}/>
-        <Route exact path="/emergency" component={Emergency}/>
-        <Route exact path="/checkout" component={Checkout}/>
-        <Route exact path="/Admin" component={Admin}/>
+        <Route path="/signup" component={SignUp}/>
+        <Route path="/signin" component={SignIn}/>
+        <Route path="/signout" component={SignOut}/>
+        <Route path="/account" component={Account}/>
+        <Route path="/home" component={Home}/>
+        <Route path="/emergency" component={Emergency}/>
+        <Route path="/checkout" component={Checkout}/>
          <Route component={NotFound}/>
       </Switch>
     </App>
