@@ -1,8 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
-
-=======
->>>>>>> 54162d35e6429ab93701fca1d7e33a735a2ee77c
 import Timepicker from '../Scheduler/Timepicker';
 
 
