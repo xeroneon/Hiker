@@ -23,11 +23,7 @@ import SignIn from './components/SignIn/SignIn';
 import SignOut from './components/SignOut/SignOut';
 import Emergency from './components/Emergency/Emergency';
 import Account from './components/Account/Account';
-<<<<<<< HEAD
-import Adm from './components/Admin/Admin';
-=======
 import Checkout from './components/Checkout/Checkout';
->>>>>>> 54162d35e6429ab93701fca1d7e33a735a2ee77c
 
 import './styles/styles.scss';
 
@@ -43,11 +39,7 @@ render((
         <Route exact path="/account" component={Account}/>
         <Route exact path="/home" component={Home}/>
         <Route exact path="/emergency" component={Emergency}/>
-<<<<<<< HEAD
-        <Route exact path="/admin" component={Adm}/>
-=======
         <Route exact path="/checkout" component={Checkout}/>
->>>>>>> 54162d35e6429ab93701fca1d7e33a735a2ee77c
          <Route component={NotFound}/>
       </Switch>
     </App>
