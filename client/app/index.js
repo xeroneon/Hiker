@@ -41,6 +41,7 @@ render((
         <Route path="/home" component={Home}/>
         <Route path="/emergency" component={Emergency}/>
         <Route path="/checkout" component={Checkout}/>
+        <Route path="/Admin" component={Admin}/>
          <Route component={NotFound}/>
       </Switch>
     </App>
