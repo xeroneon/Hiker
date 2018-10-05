@@ -8,8 +8,20 @@ import { Redirect } from 'react-router';
 import Nav from "../Nav/Nav";
 
 const Admin = () => {
-  return( <Example />
-  ) 
+
+  const userAdmin = getFromStorage("userAdmin")
+  console.log(userAdmin)
+  if (userAdmin) {
+
+
+    return (<Example />)
+  }
+
+  else {
+    return ("You do not have permission to access this page")
+  }
+
+
 }
 
 export default Admin
