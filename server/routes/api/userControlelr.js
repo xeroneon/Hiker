@@ -317,4 +317,14 @@ module.exports = (app) => {
             })
     })
 
+    app.get("/api/get-all-users", (req, res) => {
+        User.find({checkedIn: true})
+            .populate("trails")
+            .exec((err, users) => {
+                res.json({
+                    data: users
+                })
+            })
+    })
+
 };
