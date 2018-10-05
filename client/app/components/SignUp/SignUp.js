@@ -19,7 +19,8 @@ class SignUp extends Component {
         firstName: '',
         lastName: '',
         email: '',
-        password: ''
+        password: '',
+        adminCode: ''
     }
 
     handleInputChange = event => {
@@ -44,7 +45,11 @@ class SignUp extends Component {
         }
 
         if(this.state.adminCode) {
-            newUser.admin = true
+            codes[0].codes.map(code => {
+                if (code === this.state.adminCode) {
+                    newUser.admin = true
+                }
+            })
         }
 
         if(!this.validateEmail(this.state.email)) {
