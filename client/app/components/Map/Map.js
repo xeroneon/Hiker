@@ -46,19 +46,24 @@ class Map extends Component {
       lat: 33.5,
       lon: -112
     };
+
     let map = L.map("map").setView(state, 13);
+
     L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoianJuZWxzMTAiLCJhIjoiY2prenI0cGpyMHg5bDN3bGU3bnd2eWZlMCJ9.3APPzTqzXC9bF-V3Up6z3w", {
       maxZoom: 18,
       id: "mapbox.outdoors"
     }).addTo(map);
+
     let trailInfo = {
       map: map,
       data: []
     }
-    map.locate({ setView: true});
-    
+
+    map.locate({ setView: true });
+
     // Creates button and when clicked, locates the user and zooms in to their location
     Locate(map);
+
     this.invalidateSize(map)
 
     // add Basemap component to map.
