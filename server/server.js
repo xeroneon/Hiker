@@ -53,7 +53,7 @@ if (isDev) {
 } else {
   app.use(express.static(path.resolve(__dirname, '../dist')));
   app.get('*', function (req, res) {
-    res.sendFile(path.resolve(__dirname, '../index.html'));
+    res.sendFile(path.resolve("https://hiker-ua.herokuapp.com/index.html"));
     res.end();
   });
 }
