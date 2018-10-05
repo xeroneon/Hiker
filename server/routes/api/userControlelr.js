@@ -155,10 +155,33 @@ module.exports = (app) => {
                     success: true,
                     message: 'Valid sign in',
                     token: doc._id,
-                    doc: doc, 
+                    admin: false,
                 })
-            });
+
+                const userAdmin = new UserAdmin();
+                if (!userAdm) {
+                    return res.send ({
+                        success: false,
+                        message: "You do not have permission to access this site"
+                    });
+
+                    return res.send({
+                        success: true,
+                        message: 'Admin log in successful',
+                        token: doc._id,
+                        admin: true,
+                })
+
+            }
+            })
         })
+
+        
+
+
+
+
+
 
     });
 
