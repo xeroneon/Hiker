@@ -60,6 +60,7 @@ class Map extends Component {
     }
 
     map.locate({ setView: true });
+    map.setZoom(10);
 
     // Creates button and when clicked, locates the user and zooms in to their location
     Locate(map);
