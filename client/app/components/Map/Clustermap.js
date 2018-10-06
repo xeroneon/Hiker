@@ -13,13 +13,11 @@ import Popup from './Popup';
 
 
 
-class Map extends Component {
+class Clustermap extends Component {
   // constructor() {
   //   this.stateOfMarker = this.stateOfMarker.bind(this)
   // }
   invalidateSize(map) {
-    // map = L.map("map").setView(state,14);
-
     console.log(this.trail)
     if (map) {
       setTimeout(() => { map.invalidateSize(true) }, 100);
@@ -39,34 +37,25 @@ class Map extends Component {
     console.log(this.state)
   }
   componentDidMount() {
-    // this.forceUpdate();
+    let map = L.map("map").fitWorld();
     let toggletrailInfo = this.toggleTrailInfo;
 
     let state = {
       lat: 33.5,
       lon: -112
     };
-
-    let map = L.map("map").setView(state, 13);
-
-    L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoianJuZWxzMTAiLCJhIjoiY2prenI0cGpyMHg5bDN3bGU3bnd2eWZlMCJ9.3APPzTqzXC9bF-V3Up6z3w", {
-      maxZoom: 18,
-      id: "mapbox.outdoors"
-    }).addTo(map);
-
     let trailInfo = {
       map: map,
       data: []
     }
-
-    map.locate({ setView: true });
+    this.invalidateSize(map)
+    map.locate({ setView: true, maxZoom: 10 });
 
     // Creates button and when clicked, locates the user and zooms in to their location
     Locate(map);
 
-    this.invalidateSize(map)
-
     // add Basemap component to map.
+    Basemap.addTo(map)
 
     // on initial page load,
     // TrailsAPI.getTrailsInArea pulls 100 trails around the user. Then runs the function
@@ -77,7 +66,7 @@ class Map extends Component {
       trailsInArea(data)
     })
 
-
+    
     // function stateOfMarker(data) {
     //   this.setState((prevState, props) => ({
     //     marker: [...prevState.marker, ...data.data]
@@ -105,7 +94,7 @@ class Map extends Component {
     // and adds a clickable function for it. 
     function trailsInArea(data) {
       // map.removeLayer(Trails);
-
+      
       trailInfo.data = data.data;
       Trails(trailInfo, toggletrailInfo)
     }
@@ -135,4 +124,4 @@ class Map extends Component {
 }
 
 
-export default Map;
+export default Clustermap;

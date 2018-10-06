@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Example from '../Map/Map';
+import Map from '../Map/Map';
 import 'whatwg-fetch';
 import {
   getFromStorage,
@@ -21,6 +21,17 @@ class Home extends Component {
     if (this.state.token) {
       localStorage.removeItem("Hiker");
     }
+  }
+
+  componentWillMount = () => {
+    axios.get(`/api/get-user?token=${this.state.token}`)
+      .then(res => {
+        if(res.data.success && res.data.user.role === 99) {
+          this.setState({
+            auth: true
+          })
+        }
+      })
   }
 
   componentDidMount() {
@@ -48,9 +59,9 @@ class Home extends Component {
     document.body.style = "";
     return (
       <div>
-        <Nav onClick={this.handleClick} token={this.state.token}/>
+        <Nav onClick={this.handleClick} token={this.state.token} admin={this.state.auth}/>
 
-        <Example />
+        <Map />
 
       </div>
 

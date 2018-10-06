@@ -16,10 +16,8 @@ const Nav = props => {
         </strong>
       </h2>
     </Link>
-    {props.token && 
-    
-    <Link to="/account"><Button btnName="Account" /></Link>
-    }
+    {props.token && <Link to="/account"><Button btnName="Account" /></Link>}
+    {props.admin && <Link to="/admin"><Button btnName="Admin" /></Link>}
     <Link to={props.token ? "/signout" : "/signin"}><Button btnName={props.token ? "Sign Out" : "Sign In"} onClick={props.handleClick}/></Link>
   </nav>
 };
