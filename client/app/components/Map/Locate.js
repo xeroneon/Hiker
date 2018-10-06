@@ -43,15 +43,17 @@ const Locate = map => {
         console.log(e.latlng)
         lat = e.latlng.lat;
         lng = e.latlng.lng
-        map.locate({ setView: true});
-        map.setZoom(10);
+        // map.locate({ setView: true});
+        // map.setZoom(10);
 
     }
     map.on('locationfound', onLocationFound);
     $('.auto-button').on('click', function () {
         map.locate({ setView: true, maxZoom: 18 });
-
+        
+        
         map.on('locationfound', e => {
+            map.setZoom(10);
             // var radius = e.accuracy / 2;
 
             L.marker(e.latlng).addTo(map)
