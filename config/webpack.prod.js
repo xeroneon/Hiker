@@ -13,6 +13,10 @@ module.exports = merge(commonConfig, {
     chunkFilename: '[id].[hash].chunk.js'
   },
 
+  devServer: {
+    historyApiFallback: true,
+  },
+
   // plugins: [
   //   new webpack.optimize.UglifyJsPlugin({
   //     compressor: {

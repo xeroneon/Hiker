@@ -30,7 +30,7 @@ class Landing extends Component {
         }
 
         if (this.state.redirect) {
-            return <Redirect to='/Home' />;
+            return <Redirect to='/home' />;
         }
         return (
             <div>

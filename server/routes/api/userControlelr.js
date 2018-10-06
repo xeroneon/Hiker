@@ -11,7 +11,8 @@ module.exports = (app) => {
         const {
             firstName,
             lastName,
-            password
+            password,
+            admin
         } = body;
 
         console.log(firstName);
@@ -68,6 +69,9 @@ module.exports = (app) => {
             newUser.firstName = firstName;
             newUser.lastName = lastName;
             newUser.password = newUser.generateHash(password);
+            if(admin) {
+                newUser.role = 99
+            }
             newUser.save((err, user) => {
                 if (err) {
                     return res.send({
@@ -149,14 +153,21 @@ module.exports = (app) => {
                         message: 'Server Error'
                     });
                 }
-
                 return res.send({
                     success: true,
                     message: 'Valid sign in',
-                    token: doc._id
+                    token: doc._id,
+                    admin: user.admin,
                 })
-            });
+            })
         })
+
+
+
+
+
+
+
 
     });
 
@@ -202,20 +213,20 @@ module.exports = (app) => {
         UserSession.findOneAndUpdate({
             _id: token
         }, {
-            $set: { isDeleted: true }
-        }, null, (err, sessions) => {
-            console.log(sessions);
-            if (err) {
+                $set: { isDeleted: true }
+            }, null, (err, sessions) => {
+                console.log(sessions);
+                if (err) {
+                    return res.send({
+                        success: false,
+                        message: "Server Error"
+                    });
+                }
                 return res.send({
-                    success: false,
-                    message: "Server Error"
+                    success: true,
+                    message: "Good"
                 });
-            }
-            return res.send({
-                success: true,
-                message: "Good"
             });
-        });
     });
 
     app.post("/api/account/update", (req, res, next) => {
@@ -223,7 +234,7 @@ module.exports = (app) => {
         const { firstName, lastName, email, password } = req.body
 
 
-        UserSession.findOne({_id: req.body.token})
+        UserSession.findOne({ _id: req.body.token })
             .exec((err, session) => {
                 if (err) return console.log(err);
 
@@ -232,18 +243,18 @@ module.exports = (app) => {
                         if (firstName) {
                             user.firstName = firstName
                         }
-                        if(lastName) {
+                        if (lastName) {
                             user.lastName = lastName
                         }
-                        if(email) {
+                        if (email) {
                             user.email = email
                         }
-                        if(password) {
+                        if (password) {
                             user.password = user.generateHash(password)
                         }
 
                         user.save((err, user) => {
-                            if(err) {
+                            if (err) {
                                 res.json({
                                     success: false,
                                     message: "Internal Server Error"
@@ -278,7 +289,7 @@ module.exports = (app) => {
                             })
                         }
 
-                        if(!user.checkedIn) {
+                        if (!user.checkedIn) {
                             return res.json({
                                 checkedIn: false
                             })
@@ -286,4 +297,34 @@ module.exports = (app) => {
                     })
             })
     })
+
+    app.get("/api/get-user", (req, res) => {
+        UserSession.findOne({ _id: req.query.token })
+            .exec((err, session) => {
+                if (err) return console.log(err);
+                //find user from sessions user id
+                User.findOne({ _id: session.userId })
+                    .exec((err, user) => {
+                        if (err) return res.json({
+                            success: false,
+                            error: err
+                        })
+                        return res.json({
+                            success: true,
+                            user: user
+                        })
+                    })
+            })
+    })
+
+    app.get("/api/get-all-users", (req, res) => {
+        User.find({checkedIn: true})
+            .populate("trails")
+            .exec((err, users) => {
+                res.json({
+                    data: users
+                })
+            })
+    })
+
 };

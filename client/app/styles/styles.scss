@@ -30,6 +30,16 @@ main {
     min-height: 92vh;
 }
 
+.users {
+    color: #FFF;
+    background: rgba(0,0,0, .4);
+}
+
+.users-container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
 .contacts {
     background: rgba(0,0,0, .5);
     border-radius: 10px;

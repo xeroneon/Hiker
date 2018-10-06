@@ -67,6 +67,8 @@ class SignIn extends Component {
 
         axios.post("/api/account/signin", newUser)
             .then(res => {
+                console.log(res, "userData")
+                setInStorage("userAdmin", res.data.admin);
                 setInStorage("Hiker", res.data.token);
                 this.setState({
                     token: res.data.token
