@@ -73,13 +73,15 @@ class Parent extends React.Component {
                     selected={this.state.endDate}
                     onChange={this.handleChange}
                     showTimeSelect
-                    timeFormat="HH:mm"
+                    timeFormat="hh:mm"
                     timeIntervals={15}
                     dateFormat="LLL"
                     timeCaption="time"
                 />
-                <button className='w-100 btn-primary' toggle='true' data-toggle="modal" data-dismiss="modal" onClick={this.handleSubmit}>Check in</button>
-                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                <div className='opn-and-cls '>
+                    <button className='w-100 btn-primary' toggle='true' data-toggle="modal" data-dismiss="modal" onClick={this.handleSubmit}>Check in</button>
+                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
             </div>
         )
     }

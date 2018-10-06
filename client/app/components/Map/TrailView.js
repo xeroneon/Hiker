@@ -19,9 +19,9 @@ const TrailView = props => {
                                                                         <h5 className="modal-title m-auto" id="modalHeader">{props.trailName}</h5>
                                                                 </button>
                                                         </div>
-                                                        <div className="col-12 modal-body">
+                                                        <div className="col-12 modal-body h-100">
                                                                 <div className='row h-50 m-auto'>
-                                                                        <img className='h-100 m-auto' src={props.trailImage}></img>
+                                                                        <img className='h-100 w-100 m-auto' src={props.trailImage}></img>
                                                                 </div>
                                                                 <div className='row h-25 m-auto'>
                                                                         <h4>Trail length: {props.trailLength}</h4>
@@ -31,10 +31,6 @@ const TrailView = props => {
                                                                         {/* <Datepicker className='w-100' info={props} /> */}
                                                                         <Timepicker info={props} />
                                                                 </div>
-                                                        </div>
-
-                                                        <div className="modal-footer">
-
                                                         </div>
                                                 </div>
                                         </div>
