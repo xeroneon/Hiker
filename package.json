@@ -14,8 +14,7 @@
     "start:dev": "node server"
   },
   "engines": {
-    "node": "5.0.0",
-    "npm": "4.6.1"
+    "node": ">=6"
   },
   "dependencies": {
     "@babel/core": "^7.0.1",
