@@ -13,6 +13,10 @@
     "start": "webpack -p --progress --profile --colors && node server",
     "start:dev": "node server"
   },
+  "engines": {
+    "node": "5.0.0",
+    "npm": "4.6.1"
+  },
   "dependencies": {
     "@babel/core": "^7.0.1",
     "@babel/plugin-proposal-export-default-from": "^7.0.0",
