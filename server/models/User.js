@@ -28,6 +28,10 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  admin: {
+    type: Boolean,
+    default: false
+  },
   contacts: [{ type: Schema.Types.ObjectId, ref: 'Emergency' }],
   isDeleted: {
     type: String,

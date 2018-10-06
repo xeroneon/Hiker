@@ -15,8 +15,8 @@ const displayTrails = (props, handleClick) => {
     let trailSummary;
     let marker = {};
     let cluster = [];
-    let markerLayer;;
-    if (markerLayer === undefined) {
+    let markerLayer = L.layerGroup();
+    if (markerLayer) {
         console.log('it is undefined')
         // markerLayer.clearLayers(cluster)
 
@@ -45,6 +45,7 @@ const displayTrails = (props, handleClick) => {
             marker = L.marker([lat, lon], myPopup);
             // marker.addTo(props.map);
             cluster.push(marker)
+            markerLayer.addLayer(marker)
             marker.on('click', function (e) {
 
                 console.log(e.target.options)
@@ -55,10 +56,12 @@ const displayTrails = (props, handleClick) => {
             })
 
         }
-        markerLayer = L.layerGroup(cluster)
         console.log(markerLayer)
-        
         markerLayer.addTo(props.map)
+        props.map.on('dragend', function (e) {
+            
+            markerLayer.clearLayers();
+          })
 
 
     }
