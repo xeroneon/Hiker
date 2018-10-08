@@ -68,19 +68,21 @@ class Parent extends React.Component {
             return <Redirect to='/checkout' />
         }
         return (
-            <div className='timer w-100 position-relative'>
+            <div className='col-12 timer w-100  trail-information h-100'>
                 <DatePicker
                     selected={this.state.endDate}
                     onChange={this.handleChange}
                     showTimeSelect
-                    timeFormat="hh:mm"
+                    timeFormat="HH:mm"
                     timeIntervals={15}
                     dateFormat="LLL"
                     timeCaption="time"
                 />
-                <div className='opn-and-cls '>
-                    <button className='w-100 btn-primary' toggle='true' data-toggle="modal" data-dismiss="modal" onClick={this.handleSubmit}>Check in</button>
-                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                <div className='row opn-and-cls m-auto w-100 position-relative h-50'>
+                    <div className='col-12 position-absolute button-loc'>
+                        <button className='w-50 btn-primary float-left' toggle='true' data-toggle="modal" data-dismiss="modal" onClick={this.handleSubmit}>Check in</button>
+                        <button type="button" className="w-50 btn btn-secondary float-left" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         )
