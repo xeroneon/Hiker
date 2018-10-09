@@ -27,7 +27,10 @@ class Checkout extends Component {
         endTime: 0,
         token: getFromStorage("Hiker"),
     }
-
+    time ={
+        start:0,
+        end:0,
+    }
     componentDidUpdate() {
         axios.get(`/api/get-user?token=${this.state.token}`)
             .then(res => {
@@ -35,6 +38,8 @@ class Checkout extends Component {
                 console.log(res.data.user.trails)
                 let ending = res.data.user.trails.slice(-1)[0]
                 console.log(ending)
+                this.time.start = moment().format();
+                this.time.end = ending.completetime
             })
     }
     componentDidMount() {
