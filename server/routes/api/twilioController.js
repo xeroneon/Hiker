@@ -37,7 +37,7 @@ module.exports = (app) => {
                                         const trailIndex = user.trails.length - 1;
                                         if (user.checkedIn) {
                                             client.messages.create({
-                                                body: `EMERGENCY: ${user.firstName} checked in on Hiker-app.com to hike ${user.trails[trailIndex].name}, they were scheduled to finish at ${user.trails[trailIndex].completetime} but did not checkout before the specified time, please check in on ${user.trails[trailIndex].name} to see if they are okay.`,
+                                                body: `EMERGENCY: ${user.firstName} checked in on hiker-ua.herokuapp.com to hike ${user.trails[trailIndex].name}, they were scheduled to finish at ${user.trails[trailIndex].completetime} but did not checkout before the specified time, please check in on ${user.firstName} to see if they are okay.`,
                                                 to: contacts.phoneNumber,  // Text this number
                                                 from: "+18508528647" // From a valid Twilio number
                                             })

@@ -21,7 +21,7 @@ const TrailView = props => {
                                                         </div>
                                                         <div className="col-12 modal-body h-100">
                                                                 <div className='row h-50 picture-frame'>
-                                                                        <div className='col-12 m-1 w-100 h-100 p-0'>
+                                                                        <div className='col-12 w-100 h-100 p-0'>
                                                                         
                                                                                 <img className='h-100 p-2 w-100 m-auto trail-information'  src={props.trailImage} ></img>
                                                                         </div>
