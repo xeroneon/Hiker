@@ -1,0 +1,95 @@
+// body {
+//     height: 100vh;
+//     width: 100vw;
+//     background: url("../../../public/assets/img/hiking.jpg") center center no-repeat !important;
+//     background-size: cover !important;
+// }
+.checkout-page {
+    height: 92vh !important;
+}
+.checkout-div {
+    height: 100%;
+}
+.time-clock {
+    color:white;
+    font-size: 2rem;
+}
+.button-checkout {
+    width: 100%;
+    margin: auto;
+    text-align: center !important;
+}
+
+.countdown {
+    width: 100%;
+    text-align: center;
+    height: 40%;
+    margin-top:20%;
+}
+#checkout-btn {
+    margin: auto;
+    text-align: center;
+    height: 100px;
+    font-size: 4rem !important;
+}
+
+#clockdiv{
+    font-family: sans-serif;
+    color: #fff;
+    display: inline-block;
+    font-weight: 100;
+    text-align: center;
+    font-size: 2.2rem;
+    width:100%;
+}
+.title-div, .h-two {
+    margin: auto;
+    text-align: center;
+    margin-top: 5%;
+}
+.header-trail, #checkout-btn {
+    border-radius: 20px;
+    padding: 8px;
+    color:white;
+    margin-top:5%;
+    margin-bottom:5%;
+    text-align: center;
+    background-image:
+    linear-gradient(
+    -45deg, 
+    #6B5B4B, #A09665
+)!important;
+-webkit-box-shadow: 3px 3px 5px 6px rgb(19, 18, 18);  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+-moz-box-shadow:    3px 3px 5px 6px rgb(19, 18, 18);  /* Firefox 3.5 - 3.6 */
+box-shadow:         1px 21px 55px 3px rgb(19, 18, 18);  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+
+}
+
+#clockdiv > div{
+    margin: 2.5%;
+      padding: 2.5%;
+      border-radius: 3px;
+      background-image:
+        linear-gradient(
+        -45deg, 
+        #6B5B4B, #A09665
+    )!important;
+    -webkit-box-shadow: 3px 3px 5px 6px rgb(19, 18, 18);  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow:    3px 3px 5px 6px rgb(19, 18, 18);  /* Firefox 3.5 - 3.6 */
+    box-shadow:         1px 21px 55px 3px rgb(19, 18, 18);  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+  
+      display: inline-block;
+    //   filter: blur(5px);
+  }
+  
+  #clockdiv div > span{
+      padding: 15px;
+      border-radius: 3px;
+      background-color: rgba(0,0,0, .5)!important;
+      display: inline-block;
+  }
+  
+  .smalltext{
+      padding-top: 5px;
+      font-size: 16px;
+  }
