@@ -1,6 +1,7 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
 import "./react-datepicker.scss";
+import 'whatwg-fetch';
 import {
     getFromStorage,
     setInStorage
@@ -23,6 +24,7 @@ class Parent extends React.Component {
             endDate: moment(),
             token: getFromStorage("Hiker")
         };
+        console.log(this.state.startDate)
     }
 
     handleChange(date) {
@@ -38,9 +40,11 @@ class Parent extends React.Component {
             token: this.state.token,
             endDate: this.state.endDate.format(),
             name: this.state.props.info.trailName,
-            begintime: this.state.startDate,
-            completetime: this.state.endDate,
+            begintime: this.state.startDate.format(),
+            completetime: this.state.endDate.format(),
         }
+        console.log(body.begintime)
+
         axios.post("/api/checkin", body)
             .then(res => {
                 console.log(res);
