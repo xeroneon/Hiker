@@ -4,11 +4,79 @@
   // margin-left: -8px;
   position: absolute;
 }
-
+.react-datepicker__input-container {
+  margin-top: 10%;
+}
 .react-datepicker-popper {
+  background-image:
+        linear-gradient(
+        -45deg, 
+        #6B5B4B, #A09665
+    )!important;
   width: 100%;
   transform: translate3d(0px, 25px, 0px) !important;
+  // bottom: 75px !important;
+  top:-250px !important;
+  // top: unset !important;
+  color: white !important;
+  -webkit-box-shadow: 3px 3px 5px 6px rgb(19, 18, 18);  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    3px 3px 5px 6px rgb(19, 18, 18);  /* Firefox 3.5 - 3.6 */
+  box-shadow:         1px 1px 25px 3px rgb(19, 18, 18);  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }
+.react-datepicker,  {
+  background: rgba(0,0,0,0)!important;
+  width:100%;
+  font-size: 01.8rem !important;
+  color: white !important;
+}
+
+.react-datepicker__current-month,.react-datepicker__header, .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+  background: none !important;
+  font-size: 01.8rem !important;
+  color: white !important;
+
+}
+.react-datepicker-time__header, .react-datepicker__month-container, .react-datepicker__month {
+  font-size: 01.8rem !important;
+  color: white !important;
+  width: 70%;
+  margin: auto
+}
+.react-datepicker__day--selected {
+  background-color: white !important;
+  color: rgba(0,0,0, .5)!important;
+  box-shadow:         1px 1px 25px .5px rgb(68, 42, 3);
+}
+.react-datepicker__triangle {
+  bottom: -6px !important;
+  left: 100px !important;
+}
+.react-datepicker__time, .react-datepicker__time-box {
+  color: white !important;
+  background: none !important;
+  // height: 100px;
+  width: 100% !important;
+  overflow: hidden
+}
+
+.button-loc {
+  // position: absolute;
+  bottom: 0;
+}
+.react-datepicker__day-name, {
+  width: 12% !important;
+}
+ .react-datepicker__day, .react-datepicker__time-name {
+  width: 17% !important;
+}
+
+.react-datepicker__time-container {
+width: 30% !important;
+display: inline-block;
+// float: none !important;
+border-left: none;
+}
+
 input {
 // margin: auto;
   background: none !important;
@@ -42,7 +110,7 @@ input {
 }
 
 .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle {
-  top: 0;
+  top: 100 !important;
   margin-top: -8px;
 }
 
