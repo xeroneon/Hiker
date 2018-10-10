@@ -27,7 +27,7 @@ module.exports = (app) => {
         }
         if (!lastName) {
             return res.send({
-                success: false,
+                success: false, 
                 message: 'Error: Missing last name'
             });
         }
