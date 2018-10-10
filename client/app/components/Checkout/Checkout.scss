@@ -1,6 +1,11 @@
-
+// body {
+//     height: 100vh; width: 100vw;
+// }
 .checkout-page {
     height: 92vh !important;
+    background: url('/assets/img/hiking.jpg') center center no-repeat !important; 
+    // filter: blur(50px);
+    background-size: cover !important;
 }
 .checkout-div {
     height: 100%;
@@ -41,6 +46,7 @@
     margin: auto;
     text-align: center;
     margin-top: 5%;
+    // font-size: 2rem;
 }
 .header-trail, #checkout-btn {
     border-radius: 20px;
@@ -62,7 +68,7 @@ box-shadow:         1px 21px 55px 3px rgb(19, 18, 18);  /* Opera 10.5, IE 9, Fir
 
 #clockdiv > div{
     margin: 2.5%;
-      padding: 2.5%;
+      padding: 2.1%;
       border-radius: 3px;
       background-image:
         linear-gradient(
