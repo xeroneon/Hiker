@@ -304,3 +304,15 @@ box-shadow:         1px 1px 25px 3px rgb(19, 18, 18);  /* Opera 10.5, IE 9, Fire
     margin-bottom: 20px;
     height: 20%
 }
+
+// .leaflet-marker-icon {
+//     // height: 100px !important;
+// }
+
+@keyframes fade { 
+    from { opacity: 0.01; } 
+  }
+  
+  .leaflet-marker-icon {
+    animation: fade .1s alternate;
+  }

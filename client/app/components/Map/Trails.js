@@ -49,9 +49,10 @@ const displayTrails = (props, handleClick) => {
             marker = L.marker([lat, lon], [trailName])
 
 
-            const myPopup = { trailName: trailName, trailLength: trailLength, trailImage: trailImage, trailSummary: trailSummary }
+            const myPopup = { trailName: trailName, trailLength: trailLength, trailImage: trailImage, trailSummary: trailSummary, }
 
             marker = L.marker([lat, lon], myPopup);
+            // marker._icon.classList.add('markerClass')
             // marker.addTo(props.map);
             cluster.push(marker)
             markerLayer.addLayer(marker)
