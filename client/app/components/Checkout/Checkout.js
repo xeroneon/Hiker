@@ -9,7 +9,7 @@ import {
 } from "../../utils/storage";
 import { Redirect } from 'react-router';
 import Nav from "../Nav/Nav";
-import { isMoment } from '../../../../../../../../AppData/Local/Microsoft/TypeScript/3.0/node_modules/moment/moment';
+import { isMoment } from 'moment';
 // import ReactCountdownClock from 'react-countdown-clock';
 import moment from 'moment';
 import Countdown from 'react-countdown-now';
