@@ -69,7 +69,7 @@ module.exports = (app) => {
             newUser.firstName = firstName;
             newUser.lastName = lastName;
             newUser.password = newUser.generateHash(password);
-            if(admin) {
+            if (admin) {
                 newUser.role = 99
             }
             newUser.save((err, user) => {
@@ -304,6 +304,7 @@ module.exports = (app) => {
                 if (err) return console.log(err);
                 //find user from sessions user id
                 User.findOne({ _id: session.userId })
+                    .populate('trails')
                     .exec((err, user) => {
                         if (err) return res.json({
                             success: false,
@@ -318,7 +319,7 @@ module.exports = (app) => {
     })
 
     app.get("/api/get-all-users", (req, res) => {
-        User.find({checkedIn: true})
+        User.find({ checkedIn: true })
             .populate("trails")
             .exec((err, users) => {
                 res.json({
