@@ -57,13 +57,13 @@ class Parent extends React.Component {
         else {
 
             axios.post("/add-trail", body)
-                .then(res => { console.log(res) })
+                .then(res => {this.setState({redirect: true}) })
                 .catch(err => { console.log(err) })
 
         }
-        this.setState({
-            redirect: true
-        })
+        // this.setState({
+        //     redirect: true
+        // })
     }
 
 

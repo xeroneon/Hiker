@@ -35,7 +35,9 @@ module.exports = (app) => {
                 })
                 // console.log("new trail", newTrail);
                 newTrail.save()
-                res.send(newTrail)
+                res.json({
+                    success:true
+                })
                 })
             })
     })
