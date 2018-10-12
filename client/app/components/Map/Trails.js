@@ -23,7 +23,7 @@ const displayTrails = (props, handleClick) => {
 
         // props.map.removeLayer(marker);
         var greenIcon = L.icon({
-            iconUrl: './hiking.jpg',
+            iconUrl: 'assets/img/leaf-green.png',
             // shadowUrl: 'leaf-shadow.png',
         
             iconSize:     [38, 95], // size of the icon

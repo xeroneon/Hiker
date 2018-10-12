@@ -14,8 +14,8 @@ const Locate = map => {
         onAdd: function (map) {
             const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom auto-button');
             container.style.backgroundColor = 'white';
-            container.style.backgroundImage = `url()`;
-            container.style.backgroundSize = "30px 30px";
+            container.style.backgroundImage = `url(assets/img/locate.png)`;
+            container.style.backgroundSize = "25px 25px";
             container.style.width = '30px';
             container.style.height = '30px';
             // autoLocate.style.width = '100%', 'text-center';
@@ -47,19 +47,29 @@ const Locate = map => {
         // map.setZoom(10);
 
     }
+    var greenIcon = L.icon({
+        iconUrl: 'assets/img/locate.png',
+        // shadowUrl: 'leaf-shadow.png',
+    
+        iconSize:     [30, 30], // size of the icon
+        shadowSize:   [50, 64], // size of the shadow
+        iconAnchor:   [22, 22], // point of the icon which will correspond to marker's location
+        shadowAnchor: [4, 62],  // the same for the shadow
+        popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    });
     map.on('locationfound', onLocationFound);
     $('.auto-button').on('click', function () {
         map.locate({ setView: true, maxZoom: 12 });
         
         
         map.on('locationfound', e => {
-            map.setZoom(10);
+            map.setZoom(13);
             // var radius = e.accuracy / 2;
 
-            L.marker(e.latlng).addTo(map)
+            L.marker(e.latlng, {icon: greenIcon}).addTo(map)
             // .bindPopup("You are within " + radius + " meters from this point").openPopup();
             // ,{ icon: greenIcon }
-            L.circle(e.latlng).addTo(map);
+            // L.circle(e.latlng).addTo(map);
         });
 
 

@@ -27,23 +27,32 @@ class Checkout extends Component {
         endTime: 0,
         token: getFromStorage("Hiker"),
     }
-    time ={
-        start:0,
-        end:0,
+    time = {
+        start: 0,
+        end: 0,
     }
-    componentDidUpdate() {
-        axios.get(`/api/get-user?token=${this.state.token}`)
-            .then(res => {
-                console.log('componentDidUpdate=======================')
-                console.log(res.data.user.trails)
-                let ending = res.data.user.trails.slice(-1)[0]
-                console.log(ending)
-                this.time.start = moment().format();
-                this.time.end = ending.completetime
-            })
-    }
+    // componentDidUpdate() {
+    //     axios.get(`/api/get-user?token=${this.state.token}`)
+    //         .then(res => {
+    //             console.log('componentDidUpdate=======================')
+    //             console.log(res.data.user.trails)
+    //             let ending = res.data.user.trails.slice(-1)[0]
+    //             console.log(ending)
+    //             this.time.start = moment().format();
+    //             this.time.end = ending.completetime
+    //             this.setState({ name: ending.name })
+    //             var now = moment().format();
+    //             // console.log(now) //2018-10-08T18:39:00-07:00
+    //             var then = ending.completetime;
+    //             // console.log(then)
+    //             ms = moment(then, "YYYY/MM/DD HH:mm:ss").diff(moment(now, "YYYY/MM/DD HH:mm:ss"));
+    //             console.log(ms);
+
+
+    //         })
+    // }
     componentDidMount() {
-        console.log(this.state.token)
+        console.log(this.state.token);
         axios.get(`/api/get-user?token=${this.state.token}`)
             .then(res => {
                 console.log(res.data.user.trails)
@@ -62,12 +71,10 @@ class Checkout extends Component {
                 console.log(s)
                 this.setState({ name: ending.name, endTime: ms })
                 console.log(this.state.endTime)
-
-
-
                 // getTimeDifference(then, [{ now = Date.now, precision = 0, controlled = false }])
             })
             .catch(err => { console.log(err) })
+
     }
     // var now = moment().format();
     // console.log(now) //2018-10-08T18:39:00-07:00
@@ -99,7 +106,7 @@ class Checkout extends Component {
     }
 
     render() {
-        document.body.style = "height: 100vh; width: 100vw; background: url('/assets/img/hiking.jpg') center center no-repeat !important; background-size: cover !important;";
+
         const renderer = ({ days, hours, minutes, seconds }) => {
 
             return (
@@ -129,13 +136,26 @@ class Checkout extends Component {
         if (this.state.redirect) {
             return <Redirect to='/Home' />;
         }
+        const divStyle = {
+            fontSize: '1.3rem'
+        };
+        const pStyle = {
+            fontSize: '2rem'
+        };
+        let text;
+        if (this.state.name.length > 32) {
+            console.log(this.state.name.length)
+            text = divStyle
+        } else {
+            text = pStyle
+        }
         return (
             <div className='checkout-page'>
                 <Nav token={this.state.token} />
                 <div className="checkout-div">
                     {/* <h2><strong>Timer</strong></h2> */}
                     <div className='row title-div'>
-                        <h2 className='h-two'><strong className='header-trail'>{this.state.name}</strong></h2>
+                        <h2 className='h-two'><strong className='header-trail' style={text}>{this.state.name}</strong></h2>
                     </div>
 
                     <div className='countdown'>
@@ -145,7 +165,7 @@ class Checkout extends Component {
                         />
                     </div>
                     <div className='button-checkout'>
-                    <button className='main-btn' id='checkout-btn' onClick={this.handleClick} >Checkout</button>
+                        <button className='main-btn' id='checkout-btn' onClick={this.handleClick} >Checkout</button>
                     </div>
                 </div>
             </div>
