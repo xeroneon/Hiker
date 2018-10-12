@@ -5,9 +5,10 @@ import { Redirect } from "react-router";
 import Nav from "../Nav/Nav";
 import axios from "axios";
 import moment from "moment";
-import { Map, Marker, Popup } from "react-leaflet";
+import { Map, Marker, TileLayer, Popup } from "react-leaflet";
 import TrailsAPI from "../../utils/API";
 
+const position = [33.5, -112];
 
 class Clustermap extends Component {
   state = {
@@ -28,20 +29,26 @@ class Clustermap extends Component {
         id: "mapbox.outdoors"
       }
     ).addTo(map);
+    TrailsAPI.getTrailsInArea({ lat: position[0], lon: position[1] }).then(
+      data => {
+        const allUserTrails = data.data.trails;
+        this.setState({ allUserTrails });
+      }
+    );
   }
 
 
   render() {
     return (
-      <div className="azMap">
-        <div id="map-wrapper">
-          <div id="map" /></div>
+          <Map className="newTrail" position={position}>
 
-          <div className="newTrail">
-            {this.state.allUserTrails &&
-              this.state.allUserTrails.map(trail => {
+            {
+              this.state.allUserTrails.map((trail,index) => {
+                console.log(trail.latitude,trail.longitude)
+                let coord = [trail.latitude, trail.longitude]  
+                console.log(coord);
                 return (
-                  <Marker position={trail.position}>
+                  <Marker position={coord} key={index}>
                     <Popup>
                       User {trail.firstName} {trail.lastName} has checked in{" "}
                       {trail.name}
@@ -49,9 +56,7 @@ class Clustermap extends Component {
                   </Marker>
                 );
               })}
-          </div>
-        </div>
-      // </div>
+          </Map>
     );
   }
 }

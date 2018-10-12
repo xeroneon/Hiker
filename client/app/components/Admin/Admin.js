@@ -76,6 +76,7 @@ class Admin extends Component {
   };
 
   render() {
+    console.log("ADMIN - TRAILS : ", this.state.allUserTrails);
     if (this.state.auth) {
       return (
         <div className="admin">
@@ -83,27 +84,11 @@ class Admin extends Component {
           <Nav token={this.state.token} admin={this.state.auth} />
           <div className="azMap">
             <div id="map-wrapper">
-            <div id='map'></div>
-            <Clustermap />
-          </div>
-
-              {/* <clustermap
-                center={position}
-                style={{ height: "100%", width: "100%" }}
-                zoom={5}
-              >
-                {this.state.allUserTrails &&
-                  this.state.allUserTrails.map(trail => {
-                    return (
-                       <Marker position={trail.position}>
-                        <Popup>
-                          User {trail.firstName} {trail.lastName} has checked in{" "}
-                          {trail.name}
-                        </Popup>
-                      </Marker>
-                    );
-                  })}
-              </clustermap> */}
+            <div id='map'>
+            <Clustermap >
+            </Clustermap>
+            </div>
+              </div>
             </div>
           </div>
           <div className="container users-container">
@@ -140,7 +125,6 @@ class Admin extends Component {
             </div>
           </div>
         </div>
-        
       );
     } else {
       return "You do not have permission to access this page";
