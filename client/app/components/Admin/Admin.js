@@ -6,6 +6,8 @@ import axios from "axios";
 import moment from "moment";
 import { Map, Marker, Popup } from "react-leaflet";
 import TrailsAPI from "../../utils/API";
+import Clustermap from "../Map/Clustermap";
+
 const position = [33.5, -112];
 
 class Admin extends Component {
@@ -18,6 +20,20 @@ class Admin extends Component {
   // console.log(userAdmin)
 
   componentDidMount = () => {
+
+    let mapstate = {
+      lat: 33.5,
+      lon: -112
+    };
+    // let map = L.map("map").setView(mapstate, 13);
+    // // let toggletrailInfo = this.toggleTrailInfo;
+
+    // // let map = L.map("map").setView(state, 13);
+
+    // L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoianJuZWxzMTAiLCJhIjoiY2prenI0cGpyMHg5bDN3bGU3bnd2eWZlMCJ9.3APPzTqzXC9bF-V3Up6z3w", {
+    //   maxZoom: 18,
+    //   id: "mapbox.outdoors"
+    // }).addTo(map);
     axios.get(`/api/get-user?token=${this.state.token}`).then(res => {
       if (res.data.success && res.data.user.role === 99) {
         this.setState({
@@ -25,6 +41,7 @@ class Admin extends Component {
         });
       }
     });
+    
     TrailsAPI.getTrailsInArea({ lat: position[0], lon: position[1] }).then(
       data => {
         const allTrails = data.data.trails;
@@ -62,10 +79,15 @@ class Admin extends Component {
     if (this.state.auth) {
       return (
         <div className="admin">
+        <div>
           <Nav token={this.state.token} admin={this.state.auth} />
           <div className="azMap">
             <div id="map-wrapper">
-              <Map
+            <div id='map'></div>
+            <Clustermap />
+          </div>
+
+              {/* <clustermap
                 center={position}
                 style={{ height: "100%", width: "100%" }}
                 zoom={5}
@@ -73,7 +95,7 @@ class Admin extends Component {
                 {this.state.allUserTrails &&
                   this.state.allUserTrails.map(trail => {
                     return (
-                      <Marker position={trail.position}>
+                       <Marker position={trail.position}>
                         <Popup>
                           User {trail.firstName} {trail.lastName} has checked in{" "}
                           {trail.name}
@@ -81,7 +103,7 @@ class Admin extends Component {
                       </Marker>
                     );
                   })}
-              </Map>
+              </clustermap> */}
             </div>
           </div>
           <div className="container users-container">
@@ -118,6 +140,7 @@ class Admin extends Component {
             </div>
           </div>
         </div>
+        
       );
     } else {
       return "You do not have permission to access this page";

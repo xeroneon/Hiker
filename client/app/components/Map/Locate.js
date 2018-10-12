@@ -49,7 +49,7 @@ const Locate = map => {
     }
     map.on('locationfound', onLocationFound);
     $('.auto-button').on('click', function () {
-        map.locate({ setView: true, maxZoom: 18 });
+        map.locate({ setView: true, maxZoom: 12 });
         
         
         map.on('locationfound', e => {

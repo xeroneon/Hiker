@@ -6,7 +6,7 @@ import Timepicker from '../Scheduler/Timepicker';
 
 
 const TrailView = props => {
-        const hasImage = props.trailImage;
+
         if (props.trailName) {
 
                 return (
