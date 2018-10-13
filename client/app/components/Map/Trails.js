@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Icon from './Icons';
 import TrailView from './TrailView';
-
+import hiking from './Icons'
 
 
 
@@ -15,16 +15,25 @@ const displayTrails = (props, handleClick) => {
     let trailSummary;
     let marker = {};
     let cluster = [];
-    let markerLayer;;
-    if (markerLayer === undefined) {
+    let markerLayer = L.layerGroup();
+    if (markerLayer) {
         console.log('it is undefined')
         // markerLayer.clearLayers(cluster)
 
 
         // props.map.removeLayer(marker);
-        // const greenIcon = L.icon({
-        //     iconUrl: Icon.options.iconUrl
-        // })
+        var greenIcon = L.icon({
+            iconUrl: 'assets/img/leaf-green.png',
+            // shadowUrl: 'leaf-shadow.png',
+        
+            iconSize:     [38, 95], // size of the icon
+            shadowSize:   [50, 64], // size of the shadow
+            iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+            shadowAnchor: [4, 62],  // the same for the shadow
+            popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+        });
+
+
         for (let i = 0; i < props.data.trails.length; i++) {
             // console.log(props.data.trails[i].latitude)
 
@@ -45,6 +54,7 @@ const displayTrails = (props, handleClick) => {
             marker = L.marker([lat, lon], myPopup);
             // marker.addTo(props.map);
             cluster.push(marker)
+            markerLayer.addLayer(marker)
             marker.on('click', function (e) {
 
                 console.log(e.target.options)
@@ -55,10 +65,12 @@ const displayTrails = (props, handleClick) => {
             })
 
         }
-        markerLayer = L.layerGroup(cluster)
         console.log(markerLayer)
-        
         markerLayer.addTo(props.map)
+        props.map.on('dragend', function (e) {
+            
+            markerLayer.clearLayers();
+          })
 
 
     }

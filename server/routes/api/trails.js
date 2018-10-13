@@ -27,7 +27,7 @@ module.exports = (app) => {
                     user: user._id,
                     _id: new mongoose.Types.ObjectId()
                 })
-
+                // console.log('new trail \n' + newTrail)
                 user.trails.push(newTrail._id);
 
                 user.save(err => {
@@ -35,7 +35,9 @@ module.exports = (app) => {
                 })
                 // console.log("new trail", newTrail);
                 newTrail.save()
-                res.send(newTrail)
+                res.json({
+                    success:true
+                })
                 })
             })
     })

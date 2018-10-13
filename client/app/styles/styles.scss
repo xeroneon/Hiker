@@ -30,6 +30,16 @@ main {
     min-height: 92vh;
 }
 
+.users {
+    color: #FFF;
+    background: rgba(0,0,0, .4);
+}
+
+.users-container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
 .contacts {
     background: rgba(0,0,0, .5);
     border-radius: 10px;
@@ -231,11 +241,16 @@ footer {
   }
 
 img {
-    width: 100%;
+    margin: auto;
+    height: 100%;
     display:block;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
+
+    // object-fit: cover;
+//   width: 50px;
+//   height: 100px;
 }
 
 .modal.fade .modal-dialog {
@@ -273,6 +288,19 @@ img {
     padding: 0
 }
 
+.trail-information {
+    // margin: auto;
+    // margin-top:5px;
+    background-image:
+    linear-gradient(
+    -45deg, 
+    #6B5B4B, #A09665
+)!important;
+box-shadow:         1px 1px 25px 3px rgb(19, 18, 18);  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
 
-
-
+.picture-frame, .trail-information {
+    margin: auto;
+    margin-bottom: 20px;
+    height: 20%
+}

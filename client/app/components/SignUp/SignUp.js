@@ -7,6 +7,7 @@ import {
 } from "../../utils/storage";
 import { Redirect } from 'react-router';
 import Nav from "../Nav/Nav";
+import codes from "./codes"
 
 class SignUp extends Component {
 
@@ -18,7 +19,8 @@ class SignUp extends Component {
         firstName: '',
         lastName: '',
         email: '',
-        password: ''
+        password: '',
+        adminCode: ''
     }
 
     handleInputChange = event => {
@@ -40,6 +42,14 @@ class SignUp extends Component {
             lastName: this.state.lastName,
             password: this.state.password,
             email: this.state.email
+        }
+
+        if(this.state.adminCode) {
+            codes[0].codes.map(code => {
+                if (code === this.state.adminCode) {
+                    newUser.admin = true
+                }
+            })
         }
 
         if(!this.validateEmail(this.state.email)) {
@@ -123,6 +133,7 @@ class SignUp extends Component {
                     <input type="text" placeholder="Last Name" className="main-text-box" value={this.state.lastName} name="lastName" onChange={this.handleInputChange} />
                     <input type="text" placeholder="Email" className="main-text-box" value={this.state.email} name="email" onChange={this.handleInputChange} />
                     <input type="password" placeholder="Password" className="main-text-box" value={this.state.password} name="password" onChange={this.handleInputChange} />
+                    <input type="text" placeholder="Admin Code(optional)" className="main-text-box" value={this.state.adminCode} name="adminCode" onChange={this.handleInputChange} />
                     <input type="submit" className="main-btn" onClick={this.handleFormSubmit} />
                 </form>
             </div >
