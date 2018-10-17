@@ -96,8 +96,10 @@ module.exports = (app) => {
     app.post("/api/recieve-sms", (req, res) => {
         console.log(req)
 
-        smsBody = req.body.Body
+        let smsBody = req.body.Body
         console.log(req.body.From.slice(2))
+
+        let number = parseInt(req.body.From.slice(2))
 
         if(smsBody.toLowerCase() === "accept") {
             console.log("accepted")
@@ -106,7 +108,7 @@ module.exports = (app) => {
             })
         } else if (smsBody.toLowerCase() === "decline") {
             console.log("declined")
-            Emergency.findOne({phoneNumber: req.body.From.slice(2)}).remove();
+            Emergency.findOne({phoneNumber: number}).remove();
 
             res.json({
                 message: "user has been removed"
