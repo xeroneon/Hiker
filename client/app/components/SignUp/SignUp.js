@@ -120,7 +120,7 @@ class SignUp extends Component {
 
 
     render() {
-        document.body.style = "";
+        // document.body.style = "";
         if (this.state.redirect) {
             return <Redirect to='/emergency' />;
         }

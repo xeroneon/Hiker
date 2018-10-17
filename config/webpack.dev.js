@@ -8,6 +8,12 @@ module.exports = merge(commonConfig, {
 
   mode: 'development',
 
+  externals: {
+    // 'cheerio': 'window',
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true
+  },
+
   entry: {
     'app': [
       'webpack-hot-middleware/client?reload=true'
