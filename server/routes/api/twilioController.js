@@ -99,10 +99,12 @@ module.exports = (app) => {
         smsBody = req.body.Body
 
         if(smsBody.toLowerCase() === "accept") {
+            console.log("accepted")
             res.json({
                 message: "user accepted"
             })
         } else if (smsBody.toLowerCase() === "decline") {
+            console.log("declined")
             Emergency.findOne({phoneNumer: req.body.From}).remove();
 
             res.json({
