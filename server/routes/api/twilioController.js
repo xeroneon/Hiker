@@ -78,5 +78,39 @@ module.exports = (app) => {
                     })
             })
     })
+
+    app.post("/api/confirm-contact", (req, res) => {
+        client.messages.create({
+            body: `${req.body.user} added you as an emergency contact on hiker-az.herokuapp.com, reply "accept" to confirm or reply decline to remove yourself`,
+            to: req.body.phoneNumber,  // Text this number
+            from: "+18508528647" // From a valid Twilio number
+        })
+            .then((message) => {
+                console.log(message.sid)
+
+                res.send(message.sid)
+            });
+    })
+
+    app.post("/api/recieve-sms", (req, res) => {
+        console.log(req)
+
+        res.end();
+    })
+
+    app.post("/api/test-sms", (req, res) => {
+        client.messages.create({
+            body: `added you as an emergency contact on hiker-az.herokuapp.com, reply "accept" to confirm or reply decline to remove yourself`,
+            to: "9254284687",  // Text this number
+            from: "+18508528647" // From a valid Twilio number
+        })
+            .then((message) => {
+                console.log(message.sid)
+
+                res.send(message.sid)
+            });
+
+            // res.end();
+    })
 }
 

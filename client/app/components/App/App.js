@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Footer from '../Footer/Footer';
 
-document.body.style = "";
+// document.body.style = "";
 
 
 
