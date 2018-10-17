@@ -3,6 +3,7 @@ var authToken = 'd2322f65ae210071333e407d81a75806';   // Your Auth Token from ww
 
 var User = require("../../models/User");
 var UserSession = require("../../models/UserSession");
+var Emergency = require("../../models/Emergency")
 
 var twilio = require('twilio');
 var client = new twilio(accountSid, authToken);
@@ -81,7 +82,7 @@ module.exports = (app) => {
 
     app.post("/api/confirm-contact", (req, res) => {
         client.messages.create({
-            body: `${req.body.user} added you as an emergency contact on hiker-az.herokuapp.com, reply "accept" to confirm or reply decline to remove yourself`,
+            body: `${req.body.user} added you as an emergency contact on hiker-az.herokuapp.com, reply "accept" to confirm or reply "decline" to remove yourself`,
             to: req.body.phoneNumber,  // Text this number
             from: "+18508528647" // From a valid Twilio number
         })
@@ -95,7 +96,21 @@ module.exports = (app) => {
     app.post("/api/recieve-sms", (req, res) => {
         console.log(req)
 
-        res.end();
+        smsBody = req.body.Body
+
+        if(smsBody.toLowerCase() === "accept") {
+            res.json({
+                message: "user accepted"
+            })
+        } else if (smsBody.toLowerCase() === "decline") {
+            Emergency.findOne({phoneNumer: req.body.From}).remove();
+
+            res.json({
+                message: "user has been removed"
+            })
+        }
+
+        // res.end();
     })
 
     app.post("/api/test-sms", (req, res) => {
