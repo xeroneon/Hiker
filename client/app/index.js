@@ -25,6 +25,7 @@ import Emergency from './components/Emergency/Emergency';
 import Account from './components/Account/Account';
 import Checkout from './components/Checkout/Checkout';
 import Admin from './components/Admin/Admin';
+import Test from "./components/Test";
 
 import './styles/styles.scss';
 
@@ -42,6 +43,7 @@ render((
         <Route path="/emergency" component={Emergency}/>
         <Route path="/checkout" component={Checkout}/>
         <Route path="/Admin" component={Admin}/>
+        <Route path="/test" component={Test}/>
          <Route component={NotFound}/>
       </Switch>
     </App>

@@ -3,6 +3,7 @@ var authToken = 'd2322f65ae210071333e407d81a75806';   // Your Auth Token from ww
 
 var User = require("../../models/User");
 var UserSession = require("../../models/UserSession");
+var Emergency = require("../../models/Emergency")
 
 var twilio = require('twilio');
 var client = new twilio(accountSid, authToken);
@@ -77,6 +78,63 @@ module.exports = (app) => {
                         });
                     })
             })
+    })
+
+    app.post("/api/confirm-contact", (req, res) => {
+        client.messages.create({
+            body: `${req.body.user} added you as an emergency contact on hiker-az.herokuapp.com, reply "accept" to confirm or reply "decline" to remove yourself`,
+            to: req.body.phoneNumber,  // Text this number
+            from: "+18508528647" // From a valid Twilio number
+        })
+            .then((message) => {
+                console.log(message.sid)
+
+                res.send(message.sid)
+            });
+    })
+
+    app.post("/api/recieve-sms", (req, res) => {
+        console.log(req)
+
+        let smsBody = req.body.Body
+
+        let number = parseInt(req.body.From.slice(2))
+
+        console.log(number)
+
+        if(smsBody.toLowerCase() === "accept") {
+            console.log("accepted")
+            res.json({
+                message: "user accepted"
+            })
+        } else if (smsBody.toLowerCase() === "decline") {
+            console.log("declined")
+            Emergency.remove({phoneNumber: number})
+                .exec((err, emergency) => {
+                    console.log(emergency);
+                });
+
+            res.json({
+                message: "user has been removed"
+            })
+        }
+
+        // res.end();
+    })
+
+    app.post("/api/test-sms", (req, res) => {
+        client.messages.create({
+            body: `added you as an emergency contact on hiker-az.herokuapp.com, reply "accept" to confirm or reply decline to remove yourself`,
+            to: "9254284687",  // Text this number
+            from: "+18508528647" // From a valid Twilio number
+        })
+            .then((message) => {
+                console.log(message.sid)
+
+                res.send(message.sid)
+            });
+
+            // res.end();
     })
 }
 
