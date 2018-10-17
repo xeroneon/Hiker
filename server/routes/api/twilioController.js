@@ -109,7 +109,7 @@ module.exports = (app) => {
             })
         } else if (smsBody.toLowerCase() === "decline") {
             console.log("declined")
-            Emergency.findOne({phoneNumber: number}).remove();
+            Emergency.deleteOne({phoneNumber: number});
 
             res.json({
                 message: "user has been removed"
