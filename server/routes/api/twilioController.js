@@ -110,7 +110,7 @@ module.exports = (app) => {
         } else if (smsBody.toLowerCase() === "decline") {
             console.log("declined")
             Emergency.findOne({phoneNumber: number})
-                .exec((err, emergecy) => {
+                .exec((err, emergency) => {
                     console.log(emergency);
                 }).remove;
 
