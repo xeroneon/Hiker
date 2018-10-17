@@ -97,9 +97,10 @@ module.exports = (app) => {
         console.log(req)
 
         let smsBody = req.body.Body
-        console.log(req.body.From.slice(2))
 
         let number = parseInt(req.body.From.slice(2))
+
+        console.log(number)
 
         if(smsBody.toLowerCase() === "accept") {
             console.log("accepted")
