@@ -81,16 +81,30 @@ module.exports = (app) => {
     })
 
     app.post("/api/confirm-contact", (req, res) => {
-        client.messages.create({
-            body: `${req.body.user} added you as an emergency contact on hiker-az.herokuapp.com, reply "accept" to confirm or reply "decline" to remove yourself`,
-            to: req.body.phoneNumber,  // Text this number
-            from: "+18508528647" // From a valid Twilio number
-        })
-            .then((message) => {
-                console.log(message.sid)
 
-                res.send(message.sid)
-            });
+        UserSession.findOne({_id: req.body.token})
+            .exec((err, session) => {
+                if(err) {
+                    res.json(error)
+                }
+                User.findOne({_id: session.userId})
+                    .exec((err, user) => {
+                        if(err) {
+                            res.json(error)
+                        }
+                        client.messages.create({
+                            body: `${user.firstName} added you as an emergency contact on hiker-az.herokuapp.com, reply "accept" to confirm or reply "decline" to remove yourself`,
+                            to: req.body.phoneNumber,  // Text this number
+                            from: "+18508528647" // From a valid Twilio number
+                        })
+                            .then((message) => {
+                                console.log(message.sid)
+                
+                                res.send(message.sid)
+                            });
+                    })
+            })
+        
     })
 
     app.post("/api/recieve-sms", (req, res) => {

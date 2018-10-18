@@ -66,6 +66,11 @@ class Emergency extends Component {
         console.log(err);
       })
 
+    axios.post("/api/confirm-contact", body)
+      .then(res => {
+        console.log(res)
+      })
+
   };
 
   onFinish = event => {
