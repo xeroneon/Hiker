@@ -34,6 +34,7 @@ const TrailView = props => {
                                                                         {/* </div> */}
                                                                 </div>
                                                                 <div className='row trail-information'>
+                                                                
                                                                         <Timepicker info={props} />
                                                                 </div>
                                                         </div>

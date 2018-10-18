@@ -73,12 +73,13 @@ class Parent extends React.Component {
         }
         return (
             <div className='col-12 timer w-100  trail-information h-100'>
+            <h3 className="text-white"><strong>What time will you be finished?</strong></h3>
                 <DatePicker
                     selected={this.state.endDate}
                     onChange={this.handleChange}
                     showTimeSelect
-                    timeFormat="HH:mm"
-                    timeIntervals={15}
+                    // timeFormat="HH:mm"
+                    timeIntervals={1}
                     dateFormat="LLL"
                     timeCaption="time"
                 />
