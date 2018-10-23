@@ -1,5 +1,5 @@
 var accountSid = 'ACcbf2f9786edc25517cf1f060ba4f0694'; // Your Account SID from www.twilio.com/console
-var authToken = 'd2322f65ae210071333e407d81a75806';   // Your Auth Token from www.twilio.com/console
+var authToken = 'f3cb144a9c15d2678ef32ca83c9888a7';   // Your Auth Token from www.twilio.com/console
 
 var User = require("../../models/User");
 var UserSession = require("../../models/UserSession");
