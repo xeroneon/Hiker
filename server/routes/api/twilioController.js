@@ -1,5 +1,7 @@
-var accountSid = 'ACcbf2f9786edc25517cf1f060ba4f0694'; // Your Account SID from www.twilio.com/console
-var authToken = 'need new token';   // Your Auth Token from www.twilio.com/console
+require("dotenv").config();
+
+var accountSid = process.env.ACCOUNT_SID; // Your Account SID from www.twilio.com/console
+var authToken = process.env.AUTH_TOKEN;   // Your Auth Token from www.twilio.com/console
 
 var User = require("../../models/User");
 var UserSession = require("../../models/UserSession");
