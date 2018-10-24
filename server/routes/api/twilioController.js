@@ -2,6 +2,7 @@ require("dotenv").config();
 
 var accountSid = process.env.ACCOUNT_SID; // Your Account SID from www.twilio.com/console
 var authToken = process.env.AUTH_TOKEN;   // Your Auth Token from www.twilio.com/console
+var twilioNum = process.env.TWILIO_NUMBER
 
 var User = require("../../models/User");
 var UserSession = require("../../models/UserSession");
@@ -42,7 +43,7 @@ module.exports = (app) => {
                                             client.messages.create({
                                                 body: `EMERGENCY: ${user.firstName} checked in on hiker-ua.herokuapp.com to hike ${user.trails[trailIndex].name}, they were scheduled to finish at ${user.trails[trailIndex].completetime} but did not checkout before the specified time, please check in on ${user.firstName} to see if they are okay.`,
                                                 to: contacts.phoneNumber,  // Text this number
-                                                from: "+18508528647" // From a valid Twilio number
+                                                from: twilioNum // From a valid Twilio number
                                             })
                                                 .then((message) => {
                                                     console.log(message.sid)
@@ -97,7 +98,7 @@ module.exports = (app) => {
                         client.messages.create({
                             body: `${user.firstName} added you as an emergency contact on hiker-az.herokuapp.com, reply "accept" to confirm or reply "decline" to remove yourself`,
                             to: req.body.phoneNumber,  // Text this number
-                            from: "+18508528647" // From a valid Twilio number
+                            from: twilioNum // From a valid Twilio number
                         })
                             .then((message) => {
                                 console.log(message.sid)
@@ -142,7 +143,7 @@ module.exports = (app) => {
         client.messages.create({
             body: `added you as an emergency contact on hiker-az.herokuapp.com, reply "accept" to confirm or reply decline to remove yourself`,
             to: "9254284687",  // Text this number
-            from: "+18508528647" // From a valid Twilio number
+            from: twilioNum // From a valid Twilio number
         })
             .then((message) => {
                 console.log(message.sid)
